@@ -1,0 +1,64 @@
+.modal_wrap{
+    /*화면에서 보이지 않음*/
+    display: none;
+    /*가로 500px*/
+    width: 500px;
+    /*높이 500px*/
+    height: 500px;
+    /*위치 static 기본, relative 위치변경(static 위치에서 부터 이동 top,right,botton,left 사용), absolute 은 position: static 속성을 가지고 있지 않은 부모를 기준으로 움직입니다. 만약 부모 중에 포지션이 relative, absolute, fixed인 태그가 없다면 가장 위의 태그(body)가 기준이 됩니다., fixed 좌표고정 보통 네이게이션 메뉴처럼 화면에 고정적 좌표를 가질때*/
+    position: absolute;
+    /*기준 위에서 50%*/
+    top:50%;
+    /*기준 오른쪽에서 50%*/
+    left: 50%;
+    /*객체 외부로 -? 위?*/
+    margin: -250px 0 0 -250px;
+    /*배경설정*/
+    background:#eee;
+    /*화면에 보이는 Z축을 설정 눈에서 보이는 2D x,y  추가 해서 z축*/
+    z-index: 2;
+}
+.black_bg{
+    /*화면에서 보이지 않음*/
+    display: none;
+    /*위치 static 기본, relative 위치변경(static 위치에서 부터 이동 top,right,botton,left 사용), absolute 은 position: static 속성을 가지고 있지 않은 부모를 기준으로 움직입니다. 만약 부모 중에 포지션이 relative, absolute, fixed인 태그가 없다면 가장 위의 태그(body)가 기준이 됩니다., fixed 좌표고정 보통 네이게이션 메뉴처럼 화면에 고정적 좌표를 가질때*/
+    position: absolute;
+    /**/
+    content: "";
+    /*가로 100%*/
+    width: 100%;
+    /*높이 100%*/
+    height: 100%;
+    /*배경색*/
+    background-color:rgba(0, 0,0, 0.5);
+    /*top에서 0만큼*/
+    top:0;
+    /*왼쪽에서 0만큼*/
+    left: 0;
+    /*z축 1*/
+    z-index: 1;
+}
+.modal_close{
+    /**/
+    width: 26px;
+    /**/
+    height: 26px;
+    /**/
+    position: absolute;
+    /**/
+    top: -30px;
+    /**/
+    right: 0;
+}
+.modal_close> a{
+    /*화면에서 보임*/
+    display: block;
+    /*가로 100%*/
+    width: 100%;
+    /*높이 100%*/
+    height: 100%;
+    /* 배경이미지 주소 지정*/
+    background:url(https://img.icons8.com/metro/26/000000/close-window.png);
+    /*들여쓰기*/
+    text-indent: -9999px;
+}
