@@ -46,10 +46,6 @@ function getLogin(e){
         let options = { 
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            LOGIN_ID:id,
-            PASSWORD:pass
-          }),
         }
         try {
           let response = await fetch(url, options);
