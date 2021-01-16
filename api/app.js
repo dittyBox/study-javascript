@@ -42,7 +42,7 @@ function getLogin(e){
 
     let submit = async () => {
         let replaceTitle = json => target.innerHTML = json.title;
-        let url = `https://api.dittybox.net/members/${id}`
+        let url = 'https://api.dittybox.net/login'
         let options = { 
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
