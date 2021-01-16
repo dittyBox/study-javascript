@@ -31,7 +31,6 @@ subButton.innerText="눌러 주세요.";
 subButton.classList.add('button');
 
 divRoot.appendChild(loginIdBox);
-
 divRoot.appendChild(loginPassBox);
 divRoot.appendChild((new newNonDiv));
 divRoot.appendChild(subButton);
@@ -43,10 +42,14 @@ function getLogin(e){
 
     let submit = async () => {
         let replaceTitle = json => target.innerHTML = json.title;
-        let url = `https://api.dittybox.net/members/1`;
+        let url = `https://api.dittybox.net/members/${id}`
         let options = { 
-          method: 'GET',
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            LOGIN_ID:id,
+            PASSWORD:pass
+          }),
         }
         try {
           let response = await fetch(url, options);
