@@ -31,6 +31,7 @@ subButton.innerText="눌러 주세요.";
 subButton.classList.add('button');
 
 divRoot.appendChild(loginIdBox);
+
 divRoot.appendChild(loginPassBox);
 divRoot.appendChild((new newNonDiv));
 divRoot.appendChild(subButton);
