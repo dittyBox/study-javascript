@@ -29,12 +29,19 @@ function onDrop(event) {
   const id = event
     .dataTransfer
     .getData('text');
-    const draggableElement = document.getElementById(id);
-    const dropzone = event.target;
-    dropzone.appendChild(draggableElement);
-    event
-      .dataTransfer
-      .clearData();
+  const draggableElement = document.getElementById(id);
+  const dropzone = event.target;
+  
+  let copyItemLength = document.querySelectorAll('copyDiv');
+  
+  let nodeCopy = draggableElement.cloneNode(true);
+  nodeCopy.id = "newId" + copyItemLength.length;
+  nodeCopy.classList.add('copyDiv');
+  dropzone.appendChild(nodeCopy);
+  
+  event
+    .dataTransfer
+    .clearData();
 }
 
 
