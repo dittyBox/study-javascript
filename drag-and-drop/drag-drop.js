@@ -18,7 +18,7 @@ function onDragStart(event) {
   event
     .currentTarget
     .style
-    .backgroundColor = 'yellow';
+    //.backgroundColor = 'yellow';
 }
 
 function onDragOver(event) {
