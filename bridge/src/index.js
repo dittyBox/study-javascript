@@ -65,6 +65,8 @@ var buttonDiv = document.querySelector(".buttonDelDiv");
 buttonDiv.addEventListener("click", function (e) {
   var test = document.querySelector(".show");
   if (test) {
-    console.log(test);
+    test.parentElement.remove();
+    //test.parentElement.classList.add("show");
+    console.log(test.parentElement);
   }
 });
