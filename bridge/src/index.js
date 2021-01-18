@@ -2,6 +2,26 @@ if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
+function Members(
+  userid,
+  username,
+  userempno,
+  deptid,
+  deptname,
+  deptcode,
+  email,
+  jobtitle
+) {
+  this.userid = userid;
+  this.username = username;
+  this.userempno = userempno;
+  this.deptid = deptid;
+  this.deptname = deptname;
+  this.deptcode = deptcode;
+  this.email = email;
+  this.jobtitle = jobtitle;
+}
+
 var bridgecont = document.getElementById("app");
 
 var bardown = document.querySelectorAll(".bardown");
