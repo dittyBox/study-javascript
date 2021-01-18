@@ -36,6 +36,15 @@ itemRight.forEach(function (item) {
 function bror(obj) {
   if (obj) {
     obj.classList.remove("show");
-    console.log(obj);
+    //console.log(obj);
   }
 }
+
+var buttonDiv = document.querySelector(".buttonDelDiv");
+
+buttonDiv.addEventListener("click", function (e) {
+  var test = document.querySelector(".show");
+  if (test) {
+    console.log(test);
+  }
+});
