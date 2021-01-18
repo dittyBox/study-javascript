@@ -85,3 +85,9 @@ body {
 .topDivDefault {
   margin-left: -25px;
 }
+
+.buttonDelDiv {
+  clear: both;
+  width: 90px;
+  background-color: #e7692e;
+}
