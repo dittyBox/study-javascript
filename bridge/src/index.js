@@ -174,26 +174,17 @@ function addBridgeNode() {
     if (beforNode) {
       var addNode = makeSubList(paramValue);
       beforNode.parentNode.insertBefore(addNode, beforNode.nextSibling);
-      console.log(addNode);
+      //console.log(addNode);
     }
   }
   //오른쪽 화살일 경우
   if (selectArrow.classList.contains("itemRight")) {
     var addNodeItem = makeSubDivItem(paramValue);
     selectArrow.parentNode.insertBefore(addNodeItem, selectArrow);
-    console.log(selectArrow);
-    // var beforNodechild = findclassName(selectArrow, "subDivItem");
-    // if (beforNodechild) {
-    //   var addNodeItem = makeSubDivItem(paramValue);
-    //   beforNodechild.parentNode.insertBefore(
-    //     addNodeItem,
-    //     beforNodechild.nextSibling
-    //   );
-    //   console.log(addNodeItem);
-    // }
+    //console.log(selectArrow);
   }
 
-  console.log(memberCheckBox);
+  //console.log(memberCheckBox);
 }
 
 function makeSubList(paramValue) {
@@ -256,6 +247,35 @@ function makeSubDivItem(paramValue) {
     reMakeSubDiv.classList.add("showDivItem");
   });
 
+  var reMakeItemHead = document.createElement("div");
+  reMakeItemHead.classList.add("itemHead");
+  reMakeItemHead.classList.add("defaultFontSet");
+
+  var reMakeSelect = document.createElement("select");
+  reMakeSelect[0] = new Option("일반결재", "1", false, false);
+  reMakeSelect[1] = new Option("협조결재", "2", false, false);
+  reMakeItemHead.appendChild(reMakeSelect);
+
+  var reMakeItemBody = document.createElement("div");
+  reMakeItemBody.classList.add("itemBody");
+  reMakeItemBody.classList.add("defaultFontSet");
+
+  var reMakeItemBodyDept = document.createElement("div");
+  var reMakeItemBodyMember = document.createElement("div");
+  reMakeItemBodyMember.classList.add("bfont");
+
+  //받아온 paramValue 내용 뿌림
+  //창원1사업장체계기술1팀|윤수용|과장
+  console.log(paramValue.split("|")[0]);
+  reMakeItemBodyDept.innerText = paramValue.split("|")[0];
+  reMakeItemBodyMember.innerText =
+    paramValue.split("|")[1] + "(" + paramValue.split("|")[2] + ")";
+
+  reMakeItemBody.appendChild(reMakeItemBodyDept);
+  reMakeItemBody.appendChild(reMakeItemBodyMember);
+
+  reMakeSubDiv.appendChild(reMakeItemHead);
+  reMakeSubDiv.appendChild(reMakeItemBody);
+
   return reMakeSubDiv;
 }
-
