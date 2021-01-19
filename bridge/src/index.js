@@ -167,6 +167,10 @@ function addBridgeNode() {
 
   var selectArrow = document.querySelector("#makeBridgeLine .show");
   if (!selectArrow) return;
+
+  //!!!!!아직 안함
+  //!!!!! 가지고 온 데이터의 임직원이 이미 포함되어 있으면 경고창을 띄운다. 진행 or stop
+
   //아래 화살일 경우
   if (selectArrow.classList.contains("bardown")) {
     //
@@ -178,6 +182,8 @@ function addBridgeNode() {
     }
   }
   //오른쪽 화살일 경우
+  //!!!!!아직 안함
+  //!!!!!해당 결재라인의 갯수만큼 width을 늘이거나 줄여야 한다.
   if (selectArrow.classList.contains("itemRight")) {
     var addNodeItem = makeSubDivItem(paramValue);
     selectArrow.parentNode.insertBefore(addNodeItem, selectArrow);
@@ -273,6 +279,15 @@ function makeSubDivItem(paramValue) {
 
   reMakeItemBody.appendChild(reMakeItemBodyDept);
   reMakeItemBody.appendChild(reMakeItemBodyMember);
+
+  var reMakeHiddenMembers = document.createElement("div");
+  var reMakeInput = document.createElement("input");
+  reMakeInput.classList.add("hiddenMembers");
+  reMakeInput.setAttribute("type", "hidden");
+  reMakeInput.setAttribute("value", paramValue);
+  reMakeHiddenMembers.appendChild(reMakeInput);
+
+  reMakeItemBody.appendChild(reMakeHiddenMembers);
 
   reMakeSubDiv.appendChild(reMakeItemHead);
   reMakeSubDiv.appendChild(reMakeItemBody);
