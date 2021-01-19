@@ -259,27 +259,3 @@ function makeSubDivItem(paramValue) {
   return reMakeSubDiv;
 }
 
-var test = `
-<div class="subList">
-  <div class="subDiv">
-
-    <div class="subDivItem">
-      <div class="itemHead defaultFontSet">
-        <select>
-          <option>일반결재</option>
-          <option>협조결재</option>
-        </select>
-      </div>
-      <div class="itemBody defaultFontSet">
-        <div>창원1사업장체계기술1팀</div>
-        <div class="bfont">윤수용(과장)</div>14
-      </div>
-    </div>
-
-    <div class="itemRight">▶</div>
-  </div>
-  <div class="bardown">
-    ▼
-  </div>
-</div>
-`;
