@@ -25,10 +25,6 @@ body {
   text-align: center;
 }
 
-.show {
-  color: #e7692e;
-}
-
 .subDiv {
   width: auto;
   min-width: 480px;
@@ -73,6 +69,35 @@ body {
   overflow: hidden;
 }
 
+.subDiv .showDivItem {
+  width: auto;
+  min-width: 100px;
+  height: 86px;
+  text-align: center;
+  margin-left: 5px;
+  flex: none;
+  border: 1px solid #e7692e;
+  background-color: #f8f8f8;
+}
+
+.subDiv .showDivItem .itemHead {
+  height: 22px;
+  padding-top: 7px;
+  border-bottom: 1px solid #e7692e;
+}
+
+.subDiv .showDivItem .itemBody {
+  width: auto;
+  height: 50px;
+  padding-top: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom: 1px solid #e7692e;
+  background-color: #ffffff;
+  overflow: hidden;
+  color: #e7692e;
+}
+
 .defaultFontSet {
   font-size: 12px;
   color: #444343;
@@ -82,7 +107,7 @@ body {
   font-weight: bold;
 }
 
-.topDivDefault {
+.bridgeTop {
   margin-left: -25px;
 }
 
@@ -90,4 +115,8 @@ body {
   clear: both;
   width: 90px;
   background-color: #e7692e;
+}
+
+.show {
+  color: #e7692e;
 }
