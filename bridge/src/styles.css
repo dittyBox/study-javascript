@@ -3,7 +3,7 @@ body {
 }
 
 .bridgeContCl {
-  width: 500px;
+  width: 530px;
   height: 400px;
   padding-top: 20px;
   background-color: #f8f8f8;
@@ -12,7 +12,7 @@ body {
 }
 
 .subList {
-  min-width: 480px; /*default 480px 아이템이 4개 이상 부터 (아이템 갯수 * 100)+100px*/
+  min-width: 500px; /*default 480px 아이템이 4개 이상 부터 (아이템 갯수 * 100)+100px*/
   width: auto;
   height: auto;
   margin: 0;
@@ -27,7 +27,7 @@ body {
 
 .subDiv {
   width: auto;
-  min-width: 480px;
+  min-width: 500px;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -112,6 +112,7 @@ body {
 }
 
 .buttonDelDiv {
+  margin-bottom: 20px;
   clear: both;
   width: 90px;
   background-color: #e7692e;
@@ -119,4 +120,12 @@ body {
 
 .show {
   color: #e7692e;
+}
+
+.buttonAddDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  clear: both;
+  width: 90px;
+  background-color: #e7692e;
 }
