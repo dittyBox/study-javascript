@@ -38,6 +38,8 @@ body {
 .subDiv .itemRight {
   min-width: 15px;
   margin-left: 5px;
+  padding-top: 90px;
+  height: 100px;
   flex: none;
 }
 
@@ -111,15 +113,15 @@ body {
   margin-left: -25px;
 }
 
+.show {
+  color: #e7692e;
+}
+
 .buttonDelDiv {
   margin-bottom: 20px;
   clear: both;
   width: 90px;
   background-color: #e7692e;
-}
-
-.show {
-  color: #e7692e;
 }
 
 .buttonAddDiv {
@@ -128,4 +130,122 @@ body {
   clear: both;
   width: 90px;
   background-color: #e7692e;
+}
+
+.bridgeViewLine {
+  clear: both;
+  width: 760px;
+  height: 600px;
+  padding: 10px;
+}
+
+.bridgeAppLine {
+}
+
+.bridgeAppLineTitle {
+  height: 25px;
+  line-height: 23px;
+  font-weight: bold;
+  vertical-align: middle;
+  font-size: 14px;
+  color: #050505;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
+.bridgeAppLineNode {
+  margin-top: 5px;
+  border: 1px solid #d6d4d4;
+  border-radius: 5px;
+}
+
+.bridgeAppLineItem {
+  height: 30px;
+  line-height: 28px;
+}
+
+.bridgeAppLineItemType {
+  width: 100px;
+  float: left;
+  text-align: center;
+}
+
+.bridgeAppLineItemName {
+  width: 120px;
+  float: left;
+  padding-left: 10px;
+}
+
+.bridgeAppLineItemPosition {
+  width: 100px;
+  float: left;
+}
+
+.bridgeAppLineItemDept {
+  width: 400px;
+  float: left;
+}
+
+.bridgeRefLineTitle {
+  height: 25px;
+  line-height: 23px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #050505;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
+.bridgeRefLineNode {
+  margin-top: 5px;
+  border-radius: 5px;
+  display: table;
+}
+
+.bridgeRefLineItemHeader {
+  width: 100px;
+  text-align: center;
+  border: 0;
+}
+
+.bridgeRefLineItemBody {
+  width: 660px;
+  float: left;
+  border: 0;
+}
+
+.bridgeRefLineItems {
+  height: 30px;
+  line-height: 28px;
+  border: 0;
+}
+
+.bridgeRefLineItem {
+  width: auto;
+  height: 30px;
+  line-height: 28px;
+  border: 0;
+  float: left;
+}
+
+.bridgeRefLineItemComma {
+  width: auto;
+  height: 30px;
+  margin-right: 3px;
+  line-height: 28px;
+  border: 0;
+  float: left;
+}
+
+.bridgeBlank {
+  height: 25px;
+}
+
+.bridgeNomalFont {
+  font-size: 14px;
+  color: #050505;
+}
+
+.bridgeBoldFont {
+  font-weight: bold;
 }
