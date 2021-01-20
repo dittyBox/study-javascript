@@ -91,7 +91,7 @@ function deleteBridgeNode() {
     var nodeParentElement = showDivItem.parentNode;
     nodeParentElement.removeChild(showDivItem);
     //subDiv 아래 subDivItem 갯수가 0일때
-    console.log(nodeParentElement.querySelectorAll(".subDivItem").length);
+    //console.log(nodeParentElement.querySelectorAll(".subDivItem").length);
     if (nodeParentElement.querySelectorAll(".subDivItem").length === 0) {
       //subList 삭제
       var deleteNodeItem = findclassName(nodeParentElement, "subList");
@@ -100,6 +100,8 @@ function deleteBridgeNode() {
       }
     }
   }
+  //해당 결재라인의 갯수만큼 width을 늘이거나 줄여야 한다.
+  viewWidthEdit();
 }
 
 var buttonDiv = document.querySelector(".buttonDelDiv");
@@ -166,7 +168,15 @@ function addBridgeNode() {
   var paramValue = memberCheckBox[0].value;
 
   var selectArrow = document.querySelector("#makeBridgeLine .show");
-  if (!selectArrow) return;
+  if (!selectArrow) {
+    //어느것도 선택이 안된 경우 가장 아래에 추가
+    var makeBridgeLine = document.querySelector("#makeBridgeLine");
+    var addNode = makeSubList(paramValue);
+    makeBridgeLine.appendChild(addNode);
+    //해당 결재라인의 갯수만큼 width을 늘이거나 줄여야 한다.
+    viewWidthEdit();
+    return;
+  }
 
   //!!!!!아직 안함
   //!!!!! 가지고 온 데이터의 임직원이 이미 포함되어 있으면 경고창을 띄운다. 진행 or stop
@@ -179,18 +189,44 @@ function addBridgeNode() {
       var addNode = makeSubList(paramValue);
       beforNode.parentNode.insertBefore(addNode, beforNode.nextSibling);
       //console.log(addNode);
+      //해당 결재라인의 갯수만큼 width을 늘이거나 줄여야 한다.
+      viewWidthEdit();
+      return;
     }
   }
   //오른쪽 화살일 경우
-  //!!!!!아직 안함
-  //!!!!!해당 결재라인의 갯수만큼 width을 늘이거나 줄여야 한다.
   if (selectArrow.classList.contains("itemRight")) {
     var addNodeItem = makeSubDivItem(paramValue);
     selectArrow.parentNode.insertBefore(addNodeItem, selectArrow);
-    //console.log(selectArrow);
+    //해당 결재라인의 갯수만큼 width을 늘이거나 줄여야 한다.
+    viewWidthEdit();
+    return;
   }
 
   //console.log(memberCheckBox);
+}
+
+//makeBridgeLine 결재라인의 갯수만큼 width을 늘이거나 줄여야 한다.
+function viewWidthEdit() {
+  var nodeSubDiv = document.querySelectorAll("#makeBridgeLine .subDiv");
+  var maxWidth = 0;
+  //가장 긴 노드maxWidth 가져온다.
+  nodeSubDiv.forEach(function (item) {
+    var itemNodeChild = item.querySelectorAll(".subDivItem");
+    var nodeMaxWidth = 0;
+    itemNodeChild.forEach(function (item) {
+      var itemNodeWidth = item.scrollWidth;
+      nodeMaxWidth += itemNodeWidth + 10;
+    });
+    maxWidth = maxWidth > nodeMaxWidth ? maxWidth : nodeMaxWidth;
+  });
+  console.log("maxWidth : ", maxWidth);
+  //모든 subList 값을 가장 긴 노드값으로 변경한다.
+  if (maxWidth < 560) return;
+  var nodeSubList = document.querySelectorAll("#makeBridgeLine .subList");
+  nodeSubList.forEach(function (item) {
+    item.style.width = maxWidth + "px";
+  });
 }
 
 function makeSubList(paramValue) {
@@ -272,7 +308,7 @@ function makeSubDivItem(paramValue) {
 
   //받아온 paramValue 내용 뿌림
   //창원1사업장체계기술1팀|윤수용|과장
-  console.log(paramValue.split("|")[0]);
+  //console.log(paramValue.split("|")[0]);
   reMakeItemBodyDept.innerText = paramValue.split("|")[0];
   reMakeItemBodyMember.innerText =
     paramValue.split("|")[1] + "(" + paramValue.split("|")[2] + ")";
@@ -293,4 +329,16 @@ function makeSubDivItem(paramValue) {
   reMakeSubDiv.appendChild(reMakeItemBody);
 
   return reMakeSubDiv;
+}
+
+//!!!!!생성된 노드들의 데이터를 뽑는다.
+function returnBridgelineData() {
+  var returnData = "";
+
+  return returnData;
+}
+
+//!!!!!처음 기안자의 셋팅
+function CreatFirst(el) {
+  //
 }
