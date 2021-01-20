@@ -155,7 +155,7 @@ function addBridgeNode() {
   //div.memberCheckBox > input[type='checkbox']:checked
   //memberCheckBox클레스를 가진 DIV안에 check되어진 checkbox input 을 가져옴
   var memberCheckBox = document.querySelectorAll(
-    "div.memberCheckBox > input[type='checkbox']:checked"
+    "div.memberCheckBox > input[type='radio']:checked"
   );
   //선택된 member가 없으면 리턴
   if (memberCheckBox.length === 0) return;
@@ -220,9 +220,9 @@ function viewWidthEdit() {
     });
     maxWidth = maxWidth > nodeMaxWidth ? maxWidth : nodeMaxWidth;
   });
-  console.log("maxWidth : ", maxWidth);
+  //console.log("maxWidth : ", maxWidth);
   //모든 subList 값을 가장 긴 노드값으로 변경한다.
-  if (maxWidth < 560) return;
+  maxWidth = maxWidth < 520 ? 500 : maxWidth;
   var nodeSubList = document.querySelectorAll("#makeBridgeLine .subList");
   nodeSubList.forEach(function (item) {
     item.style.width = maxWidth + "px";
