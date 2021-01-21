@@ -186,32 +186,26 @@ body {
   float: left;
 }
 
-.bridgeRefLineTitle {
-  height: 25px;
-  line-height: 23px;
-  font-weight: bold;
-  font-size: 14px;
-  color: #050505;
-  text-align: center;
-  background-color: #f8f8f8;
-}
-
 .bridgeRefLineNode {
+  height: 30px;
   margin-top: 5px;
   border-radius: 5px;
   display: table;
+  width: 760px;
+  border: 1px solid #d6d4d4;
 }
 
 .bridgeRefLineItemHeader {
   width: 100px;
+  height: 100%;
   text-align: center;
-  border: 0;
+  float: left;
+  line-height: 28px;
 }
 
 .bridgeRefLineItemBody {
-  width: 660px;
+  width: 640px;
   float: left;
-  border: 0;
 }
 
 .bridgeRefLineItems {
