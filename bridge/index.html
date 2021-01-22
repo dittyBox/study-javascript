@@ -12,12 +12,16 @@
         <div class="subList">
           <div class="subDiv topDivDefault bridgeTop">
             <div class="subDivItem topDivDefault">
-              <div class="itemHead defaultFontSet">기안자</div>
+              <div class="itemHead defaultFontSet">
+                <select class="itemSelect">
+                  <option value="0">기안자</option>
+                </select>
+              </div>
               <div class="itemBody defaultFontSet">
                 <div>JT시스템</div>
                 <div class="bfont">윤수용(과장)</div>
                 <div>
-                  <input type="hidden" class="hiddenMembers" value="JT시스템|윤수용|과장" />
+                  <input type="hidden" class="hiddenMembers" value="윤수용~|과장~|JT시스템~|sooyong.youn" />
                 </div>
               </div>
             </div>
@@ -28,61 +32,16 @@
         </div>
       </div>
     </div>
-    <div class="memberCheckBox"><input type="radio" name="member" value="창원1사업장체계기술1팀|윤수용|과장">창원1사업장체계기술1팀 윤수용(과장)</input>
-      <input type="radio" name="member" value="창원1사업장체계기술2팀|윤수용|과장">창원1사업장체계기술2팀 윤수용(과장)</input>
+    <div class="memberCheckBox"><input type="radio" name="member" value="윤수용~|과장~|창원1사업장체계기술1팀~|sooyong.youn">창원1사업장체계기술1팀 윤수용(과장)</input>
+      <input type="radio" name="member" value="윤수용~|과장~|창원1사업장체계기술2팀~|sooyong.youn">창원1사업장체계기술2팀 윤수용(과장)</input>
       <br>
-      <input type="radio" name="member" value="법무팀|윤수용|과장">법무팀 윤수용(과장)</input>
-      <input type="radio" name="member" value="JT시스템|윤수용|과장">JT시스템 윤수용(과장)</input></div>
+      <input type="radio" name="member" value="윤수용~|과장~|법무팀~|sooyong.youn">법무팀 윤수용(과장)</input>
+      <input type="radio" name="member" value="윤수용~|과장~|JT시스템~|sooyong.youn">JT시스템 윤수용(과장)</input></div>
     <div class="buttonAddDiv">추가</div>
     <div class="buttonDelDiv">삭제</div>
+    <div class="buttonMakedataDiv">객체 변경 및 테이블 형식으로 전환</div>
     <div style="background-color: #f8ca74;">여기서 부터는 결재라인을 테이블 형식으로 나타내는 부분</div>
     <div id="bridgeViewLine" class="bridgeViewLine">
-      <div class="bridgeAppLine">
-        <div class="bridgeAppLineNode">
-          <div class="bridgeAppLineItem">
-            <div class="bridgeAppLineItemType bridgeNomalFont bridgeBoldFont">기안</div>
-            <div class="bridgeAppLineItemName bridgeNomalFont ">윤수용</div>
-            <div class="bridgeAppLineItemPosition bridgeNomalFont ">과장</div>
-            <div class="bridgeAppLineItemDept bridgeNomalFont ">JT시스템</div>
-          </div>
-        </div>
-        <div class="bridgeAppLineNode">
-            <div class="bridgeAppLineItem">
-                <div class="bridgeAppLineItemType bridgeNomalFont bridgeBoldFont">일반결재</div>
-                <div class="bridgeAppLineItemName bridgeNomalFont ">윤수용</div>
-                <div class="bridgeAppLineItemPosition bridgeNomalFont ">과장</div>
-                <div class="bridgeAppLineItemDept bridgeNomalFont ">JT시스템</div>
-            </div>
-        </div>
-        <div class="bridgeAppLineNode">
-            <div class="bridgeAppLineItem">
-                <div class="bridgeAppLineItemType bridgeNomalFont bridgeBoldFont">일반결재</div>
-                <div class="bridgeAppLineItemName bridgeNomalFont ">윤수용</div>
-                <div class="bridgeAppLineItemPosition bridgeNomalFont ">과장</div>
-                <div class="bridgeAppLineItemDept bridgeNomalFont ">JT시스템</div>
-            </div>
-            <div class="bridgeAppLineItem">
-              <div class="bridgeAppLineItemType bridgeNomalFont bridgeBoldFont">협조결재</div>
-              <div class="bridgeAppLineItemName bridgeNomalFont ">윤수용</div>
-              <div class="bridgeAppLineItemPosition bridgeNomalFont ">과장</div>
-              <div class="bridgeAppLineItemDept bridgeNomalFont ">JT시스템</div>
-            </div>
-            <div class="bridgeAppLineItem">
-                <div class="bridgeAppLineItemType bridgeNomalFont bridgeBoldFont">협조결재</div>
-                <div class="bridgeAppLineItemName bridgeNomalFont ">윤수용</div>
-                <div class="bridgeAppLineItemPosition bridgeNomalFont ">과장</div>
-                <div class="bridgeAppLineItemDept bridgeNomalFont ">JT시스템</div>
-            </div>
-        </div>
-        <div class="bridgeAppLineNode">
-            <div class="bridgeAppLineItem">
-                <div class="bridgeAppLineItemType bridgeNomalFont bridgeBoldFont">일반결재</div>
-                <div class="bridgeAppLineItemName bridgeNomalFont ">윤수용</div>
-                <div class="bridgeAppLineItemPosition bridgeNomalFont ">과장</div>
-                <div class="bridgeAppLineItemDept bridgeNomalFont ">JT시스템</div>
-            </div>
-        </div>
-      </div>
       <div class="bridgeRefLine">
         <div class="bridgeRefLineNode">
             <div class="bridgeRefLineItemHeader bridgeNomalFont bridgeBoldFont">
@@ -99,22 +58,28 @@
                     <div class="bridgeRefLineItem bridgeNomalFont ">윤수용(JT시스템)</div>
                     <div class="bridgeRefLineItemComma bridgeNomalFont ">,</div>
                     <div class="bridgeRefLineItem bridgeNomalFont ">윤수용(JT시스템)</div>
+                    <div class="bridgeRefLineItemComma bridgeNomalFont ">,</div>
+                    <div class="bridgeRefLineItem bridgeNomalFont ">윤수용(JT시스템)</div>
+                    <div class="bridgeRefLineItemComma bridgeNomalFont ">,</div>
+                    <div class="bridgeRefLineItem bridgeNomalFont ">윤수용(JT시스템)</div>
+                    <div class="bridgeRefLineItemComma bridgeNomalFont ">,</div>
+                    <div class="bridgeRefLineItem bridgeNomalFont ">윤수용(JT시스템)</div>
                 </div>
             </div>
         </div>
       </div>
-      <div class="bridgeRefLine">
-        <div class="bridgeRefLineNode">
-            <div class="bridgeRefLineItemHeader bridgeNomalFont bridgeBoldFont">
+      <div class="bridgeRecLine">
+        <div class="bridgeRecLineNode">
+            <div class="bridgeRecLineItemHeader bridgeNomalFont bridgeBoldFont">
                 수신
             </div>
-            <div class="bridgeRefLineItemBody">
-                <div class="bridgeRefLineItems">
-                    <div class="bridgeRefLineItem bridgeNomalFont ">윤수용(JT시스템)</div>
-                    <div class="bridgeRefLineItemComma bridgeNomalFont ">,</div>
-                    <div class="bridgeRefLineItem bridgeNomalFont ">윤수용(JT시스템)</div>
-                    <div class="bridgeRefLineItemComma bridgeNomalFont ">,</div>
-                    <div class="bridgeRefLineItem bridgeNomalFont ">체계기술2</div>
+            <div class="bridgeRecLineItemBody">
+                <div class="bridgeRecLineItems">
+                    <div class="bridgeRecLineItem bridgeNomalFont ">윤수용(JT시스템)</div>
+                    <div class="bridgeRecLineItemComma bridgeNomalFont ">,</div>
+                    <div class="bridgeRecLineItem bridgeNomalFont ">윤수용(JT시스템)</div>
+                    <div class="bridgeRecLineItemComma bridgeNomalFont ">,</div>
+                    <div class="bridgeRecLineItem bridgeNomalFont ">체계기술2</div>
                 </div>
             </div>
         </div>
