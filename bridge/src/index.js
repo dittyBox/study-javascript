@@ -3,6 +3,12 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 }
 
 var members = [];
+
+members = [["0~|0~|윤수용~|과장~|JT시스템~|sooyong.youn"]];
+
+addDataToBridgeNodes(members);
+CreatAppLine(members);
+
 members = [
   ["0~|0~|윤수용~|과장~|JT시스템~|sooyong.youn"],
   ["1~|1~|윤수용~|과장~|창원1사업장체계기술2팀~|sooyong.youn"],
@@ -16,6 +22,7 @@ members = [
     "3~|1~|윤수용~|과장~|창원1사업장체계기술2팀~|sooyong.youn"
   ]
 ];
+
 // var bridgecont = document.getElementById("makeBridgeLine");
 
 var bardown = document.querySelectorAll("#makeBridgeLine .bardown");
