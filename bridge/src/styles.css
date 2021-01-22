@@ -143,6 +143,15 @@ body {
   cursor: pointer;
 }
 
+.buttonMakeDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  clear: both;
+  width: 300px;
+  background-color: #e7692e;
+  cursor: pointer;
+}
+
 .bridgeViewLine {
   clear: both;
   width: 760px;
