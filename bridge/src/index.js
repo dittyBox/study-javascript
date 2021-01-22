@@ -3,7 +3,19 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 }
 
 var members = [];
-
+members = [
+  ["0~|0~|윤수용~|과장~|JT시스템~|sooyong.youn"],
+  ["1~|1~|윤수용~|과장~|창원1사업장체계기술2팀~|sooyong.youn"],
+  [
+    "2~|1~|윤수용~|과장~|법무팀 ~|sooyong.youn",
+    "2~|2~|윤수용~|과장~|JT시스템 ~|sooyong.youn",
+    "2~|2~|윤수용~|과장~|창원1사업장체계기술1팀~|sooyong.youn"
+  ],
+  [
+    "3~|1~|윤수용~|과장~|창원1사업장체계기술1팀~|sooyong.youn",
+    "3~|1~|윤수용~|과장~|창원1사업장체계기술2팀~|sooyong.youn"
+  ]
+];
 // var bridgecont = document.getElementById("makeBridgeLine");
 
 var bardown = document.querySelectorAll("#makeBridgeLine .bardown");
@@ -211,7 +223,7 @@ function viewWidthEdit() {
   });
 }
 
-function makeSubList(paramValue) {
+function makeSubList(paramValue, types) {
   //subList 생성
   var reMakeSubList = document.createElement("div");
   reMakeSubList.classList.add("subList");
@@ -234,7 +246,7 @@ function makeSubList(paramValue) {
   var reMakeSubDiv = document.createElement("div");
   reMakeSubDiv.classList.add("subDiv");
 
-  var reMakeSubDivItem = makeSubDivItem(paramValue);
+  var reMakeSubDivItem = makeSubDivItem(paramValue, types);
   reMakeSubDiv.appendChild(reMakeSubDivItem);
 
   var reMakeItemRight = document.createElement("div");
@@ -259,7 +271,7 @@ function makeSubList(paramValue) {
   return reMakeSubList;
 }
 
-function makeSubDivItem(paramValue) {
+function makeSubDivItem(paramValue, type) {
   //
   var reMakeSubDiv = document.createElement("div");
   reMakeSubDiv.classList.add("subDivItem");
@@ -277,8 +289,18 @@ function makeSubDivItem(paramValue) {
 
   var reMakeSelect = document.createElement("select");
   reMakeSelect.classList.add("itemSelect");
-  reMakeSelect[0] = new Option("일반결재", "1", false, false);
-  reMakeSelect[1] = new Option("협조결재", "2", false, false);
+  reMakeSelect[0] = new Option(
+    "일반결재",
+    "1",
+    false,
+    type === "1" ? true : false
+  );
+  reMakeSelect[1] = new Option(
+    "협조결재",
+    "2",
+    false,
+    type === "2" ? true : false
+  );
   reMakeItemHead.appendChild(reMakeSelect);
 
   var reMakeItemBody = document.createElement("div");
@@ -319,6 +341,131 @@ var buttonMakedataDiv = document.querySelector(".buttonMakedataDiv");
 buttonMakedataDiv.addEventListener("click", function () {
   returnBridgelineData();
 });
+
+//데이터 뽑기 버튼
+var buttonMakeDiv = document.querySelector(".buttonMakeDiv");
+buttonMakeDiv.addEventListener("click", function () {
+  addDataToBridgeNodes(members);
+  CreatAppLine(members);
+});
+
+//기안자 만들기
+function addFirstNode(subList, el) {
+  //
+  var memberItemSlit = el.split("~|");
+  //기안자 라인 셋팅
+
+  var subDiv = document.createElement("div");
+  subDiv.classList.add("subDiv");
+  subDiv.classList.add("topDivDefault");
+  subDiv.classList.add("bridgeTop");
+
+  var subDivItem = document.createElement("div");
+  subDivItem.classList.add("subDivItem");
+  subDivItem.classList.add("topDivDefault");
+  subDivItem.addEventListener("click", function (e) {
+    //console.log(e.currentTarget);
+    brorItem(document.querySelector("#makeBridgeLine .showDivItem"));
+    bror(document.querySelector("#makeBridgeLine .show"));
+    e.currentTarget.classList.remove("subDivItem");
+    e.currentTarget.classList.add("showDivItem");
+  });
+
+  var itemHead = document.createElement("div");
+  itemHead.classList.add("itemHead");
+  itemHead.classList.add("defaultFontSet");
+
+  var itemSelect = document.createElement("select");
+  itemSelect.classList.add("itemSelect");
+  itemSelect[0] = new Option("기안자", "0", false, true);
+
+  itemHead.appendChild(itemSelect);
+
+  var itemBody = document.createElement("div");
+  itemBody.classList.add("itemBody");
+  itemBody.classList.add("defaultFontSet");
+
+  var subitemDivDept = document.createElement("div");
+  subitemDivDept.innerText = memberItemSlit[2];
+  var subitemDivName = document.createElement("div");
+  subitemDivName.classList.add("bfont");
+  subitemDivName.innerText = memberItemSlit[0] + "(" + memberItemSlit[2] + ")";
+  var subitemDivData = document.createElement("div");
+  var hiddenMembers = document.createElement("input");
+  hiddenMembers.classList.add("hiddenMembers");
+  hiddenMembers.setAttribute("type", "hidden");
+  hiddenMembers.setAttribute("value", el);
+  subitemDivData.appendChild(hiddenMembers);
+
+  itemBody.appendChild(subitemDivDept);
+  itemBody.appendChild(subitemDivName);
+  itemBody.appendChild(subitemDivData);
+
+  subDivItem.appendChild(itemHead);
+  subDivItem.appendChild(itemBody);
+
+  subDiv.appendChild(subDivItem);
+
+  var bardown = document.createElement("div");
+  bardown.classList.add("bardown");
+  bardown.classList.add("topDivDefault");
+  bardown.innerText = "▼";
+  bardown.addEventListener("click", function (e) {
+    // const dropdown = e.currentTarget.parentNode.querySelector(".dropdown");
+    // dropdown.classList.toggle("show");
+    bror(document.querySelector("#makeBridgeLine .show"));
+    brorItem(document.querySelector("#makeBridgeLine .showDivItem"));
+    e.currentTarget.classList.toggle("show");
+
+    // const marker = e.currentTarget.querySelector(".marker");
+    // marker.classList.toggle("hide");
+    // console.log(e.currentTarget);
+  });
+
+  subList.appendChild(subDiv);
+  subList.appendChild(bardown);
+
+  return subList;
+}
+
+function addDataToBridgeNodes(el) {
+  //
+  var makeBridgeLine = document.getElementById("makeBridgeLine");
+  makeBridgeLine.innerHTML = "";
+
+  el.forEach(function (item, index) {
+    //d
+    var subList = document.createElement("div");
+    subList.classList.add("subList");
+
+    item.forEach(function (itemSub, indexSub) {
+      //
+      console.log("indexSub : ", indexSub);
+      var memberItemSlit = itemSub.split("~|");
+      var paramValue =
+        memberItemSlit[2] +
+        "~|" +
+        memberItemSlit[3] +
+        "~|" +
+        memberItemSlit[4] +
+        "~|" +
+        memberItemSlit[5];
+
+      if (memberItemSlit[1] === "0") {
+        makeBridgeLine.appendChild(addFirstNode(subList, paramValue));
+      } else if (indexSub === 0) {
+        subList = makeSubList(paramValue, memberItemSlit[2]);
+      } else {
+        var arr = subList.querySelector(".itemRight");
+        var addNodeItem = makeSubDivItem(paramValue, memberItemSlit[1]);
+        arr.parentNode.insertBefore(addNodeItem, arr);
+      }
+    });
+    makeBridgeLine.appendChild(subList);
+  });
+  //해당 결재라인의 갯수만큼 width을 늘이거나 줄여야 한다.
+  viewWidthEdit();
+}
 
 //생성된 노드들의 데이터를 뽑는다.
 function returnBridgelineData() {
