@@ -3,6 +3,20 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 }
 
 var members = [];
+var membersRef = [];
+var membersRec = [];
+
+membersRef = [
+  "0~|1~|윤수용~|과장~|법무팀 ~|sooyong.youn",
+  "1~|3~|JT시스템~|부서명~|JT시스템 ~|555555",
+  "2~|4~|정보도움방~|부서명~|정보도움방~|1111111"
+];
+
+membersRec = [
+  "0~|2~|윤수용~|과장~|법무팀 ~|sooyong.youn",
+  "1~|5~|JT시스템~|부서명~|JT시스템 ~|555555",
+  "2~|6~|정보도움방~|부서명~|정보도움방~|1111111"
+];
 
 members = [["0~|0~|윤수용~|과장~|JT시스템~|sooyong.youn"]];
 
@@ -108,7 +122,6 @@ function deleteBridgeNode() {
 var buttonDiv = document.querySelector(".buttonDelDiv");
 buttonDiv.addEventListener("click", function (e) {
   deleteBridgeNode();
-  returnBridgelineData();
 });
 
 //sel 혹은 sel1 클레스가 포함된 상위 객체를 탐색
@@ -150,7 +163,6 @@ var buttonAddDiv = document.querySelector(".buttonAddDiv");
 
 buttonAddDiv.addEventListener("click", function (e) {
   addBridgeNode();
-  returnBridgelineData();
 });
 
 function addBridgeNode() {
@@ -449,7 +461,7 @@ function addDataToBridgeNodes(el) {
 
     item.forEach(function (itemSub, indexSub) {
       //
-      console.log("indexSub : ", indexSub);
+      //console.log("indexSub : ", indexSub);
       var memberItemSlit = itemSub.split("~|");
       var paramValue =
         memberItemSlit[2] +
@@ -501,7 +513,7 @@ function returnBridgelineData() {
     });
     members.push(memberMake);
   });
-  console.log(members);
+  //console.log(members);
   CreatAppLine(members);
   return returnData;
 }
@@ -557,7 +569,7 @@ function CreatAppLine(el) {
       bridgeAppLineItem.appendChild(bridgeAppLineItemDept);
 
       bridgeAppLineNode.appendChild(bridgeAppLineItem);
-      console.log(itemSub);
+      //console.log(itemSub);
     });
     bridgeAppLine.appendChild(bridgeAppLineNode);
   });
@@ -566,7 +578,7 @@ function CreatAppLine(el) {
 
 //결재 타입 지정
 function returnBridgeType(typeCode) {
-  console.log(typeCode);
+  //console.log(typeCode);
   var returnStr = "";
   switch (typeCode) {
     case "0":
