@@ -730,7 +730,32 @@ function CreatRecLine(el) {
 var buttonAddRefDiv = document.querySelector(".buttonAddRefDiv");
 buttonAddRefDiv.addEventListener("click", function () {
   //
+  addRefLists();
 });
+
+function addRefLists() {
+  //div.memberCheckBox > input[type='checkbox']:checked
+  //memberCheckBox클레스를 가진 DIV안에 check되어진 checkbox input 을 가져옴
+  var memberCheckBox = document.querySelector(
+    "div.memberCheckBox > input[type='radio']:checked"
+  );
+  if (!memberCheckBox) return;
+  var paramValue = memberCheckBox.value;
+  addRefList(paramValue);
+}
+
+function addRefList(el) {
+  //
+  var refMemberplit = el.split("~|");
+
+  var makeRefLine = document.getElementById("makeRefLine");
+
+  var refLineItem = document.createElement("div");
+  refLineItem.classList.add("refLineItem");
+  refLineItem.classList.add("bridgeNomalFont");
+
+  makeRefLine.appendChild(refLineItem);
+}
 //참조 삭제
 var buttonDelRefDiv = document.querySelector(".buttonDelRefDiv");
 buttonDelRefDiv.addEventListener("click", function () {
@@ -747,6 +772,16 @@ function delRefList() {
     item.parentNode.parentNode.removeChild(item.parentNode);
 
     console.log(item);
+  });
+}
+
+//참조 가져오기
+function getRefList() {
+  //makeRefLine
+  var makeRefLine = document.getElementById("makeRefLine");
+  var refLineItems = makeRefLine.querySelectorAll(".refLineItem");
+  refLineItems.forEach(function (item) {
+    //
   });
 }
 //수신 추가
