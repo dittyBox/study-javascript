@@ -2,6 +2,40 @@ body {
   font-family: sans-serif;
 }
 
+.refContCl {
+  width: 530px;
+  height: 80px;
+  padding-top: 5px;
+  background-color: #f3c8c8;
+  line-height: 1em;
+  overflow: auto;
+}
+
+.refLineItem {
+  height: 25px;
+  line-height: 25px;
+  border-bottom: 1px solid #f7f7f7;
+}
+
+.fontshout {
+  font-size: 12px;
+}
+
+.recContCl {
+  width: 530px;
+  height: 80px;
+  padding-top: 5px;
+  background-color: #e0eccc;
+  line-height: 1em;
+  overflow: auto;
+}
+
+.recLineItem {
+  height: 25px;
+  line-height: 25px;
+  border-bottom: 1px solid #f7f7f7;
+}
+
 .bridgeContCl {
   width: 530px;
   height: 400px;
@@ -306,4 +340,38 @@ body {
 
 .bridgeBoldFont {
   font-weight: bold;
+}
+
+.buttonDelRefDiv {
+  margin-bottom: 20px;
+  clear: both;
+  width: 90px;
+  background-color: #e7692e;
+  cursor: pointer;
+}
+
+.buttonAddRefDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  clear: both;
+  width: 90px;
+  background-color: #e7692e;
+  cursor: pointer;
+}
+
+.buttonDelRecDiv {
+  margin-bottom: 20px;
+  clear: both;
+  width: 90px;
+  background-color: #e7692e;
+  cursor: pointer;
+}
+
+.buttonAddRecDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  clear: both;
+  width: 90px;
+  background-color: #e7692e;
+  cursor: pointer;
 }
