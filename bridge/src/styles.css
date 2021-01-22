@@ -152,17 +152,16 @@ body {
 }
 
 .buttonDelDiv {
-  margin-bottom: 20px;
-  clear: both;
+  margin: 10px;
+  float: left;
   width: 90px;
   background-color: #e7692e;
   cursor: pointer;
 }
 
 .buttonAddDiv {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  clear: both;
+  margin: 10px;
+  float: left;
   width: 90px;
   background-color: #e7692e;
   cursor: pointer;
@@ -259,6 +258,7 @@ body {
 
 .bridgeRefLineItemBody {
   width: 640px;
+  padding-left: 10px;
   float: left;
 }
 
@@ -304,6 +304,7 @@ body {
 
 .bridgeRecLineItemBody {
   width: 640px;
+  padding-left: 10px;
   float: left;
 }
 
@@ -343,34 +344,32 @@ body {
 }
 
 .buttonDelRefDiv {
-  margin-bottom: 20px;
-  clear: both;
+  margin: 10px;
+  float: left;
   width: 90px;
   background-color: #e7692e;
   cursor: pointer;
 }
 
 .buttonAddRefDiv {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  clear: both;
+  margin: 10px;
+  float: left;
   width: 90px;
   background-color: #e7692e;
   cursor: pointer;
 }
 
 .buttonDelRecDiv {
-  margin-bottom: 20px;
-  clear: both;
+  margin: 10px;
+  float: left;
   width: 90px;
   background-color: #e7692e;
   cursor: pointer;
 }
 
 .buttonAddRecDiv {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  clear: both;
+  margin: 10px;
+  float: left;
   width: 90px;
   background-color: #e7692e;
   cursor: pointer;
