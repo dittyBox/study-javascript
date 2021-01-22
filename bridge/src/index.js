@@ -7,28 +7,25 @@ var membersRef = [];
 var membersRec = [];
 
 membersRef = [
-  "0~|1~|윤수용~|과장~|법무팀 ~|sooyong.youn",
-  "1~|3~|JT시스템~|부서명~|JT시스템 ~|555555",
+  "0~|1~|윤수용~|과장~|법무팀~|sooyong.youn",
+  "1~|3~|JT시스템~|부서명~|JT시스템~|555555",
   "2~|4~|정보도움방~|부서명~|정보도움방~|1111111"
 ];
 
 membersRec = [
-  "0~|2~|윤수용~|과장~|법무팀 ~|sooyong.youn",
-  "1~|5~|JT시스템~|부서명~|JT시스템 ~|555555",
+  "0~|2~|윤수용~|과장~|법무팀~|sooyong.youn",
+  "1~|5~|JT시스템~|부서명~|JT시스템~|555555",
   "2~|6~|정보도움방~|부서명~|정보도움방~|1111111"
 ];
 
 members = [["0~|0~|윤수용~|과장~|JT시스템~|sooyong.youn"]];
 
-addDataToBridgeNodes(members);
-CreatAppLine(members);
-
 members = [
   ["0~|0~|윤수용~|과장~|JT시스템~|sooyong.youn"],
   ["1~|1~|윤수용~|과장~|창원1사업장체계기술2팀~|sooyong.youn"],
   [
-    "2~|1~|윤수용~|과장~|법무팀 ~|sooyong.youn",
-    "2~|2~|윤수용~|과장~|JT시스템 ~|sooyong.youn",
+    "2~|1~|윤수용~|과장~|법무팀~|sooyong.youn",
+    "2~|2~|윤수용~|과장~|JT시스템~|sooyong.youn",
     "2~|2~|윤수용~|과장~|창원1사업장체계기술1팀~|sooyong.youn"
   ],
   [
@@ -37,6 +34,10 @@ members = [
   ]
 ];
 
+addDataToBridgeNodes(members);
+CreatAppLine(members);
+CreatRefLine(membersRef);
+CreatRecLine(membersRec);
 // var bridgecont = document.getElementById("makeBridgeLine");
 
 var bardown = document.querySelectorAll("#makeBridgeLine .bardown");
@@ -596,4 +597,178 @@ function returnBridgeType(typeCode) {
       break;
   }
   return returnStr;
+}
+
+//테이블 형식 참조 셋팅
+function CreatRefLine(el) {
+  //
+  //bridgeViewLine 최상위 가져옴
+  var bridgeViewLine = document.getElementById("bridgeViewLine");
+  //결재 참조 셋팅
+  var bridgeRefLineNode = document.createElement("div");
+  bridgeRefLineNode.classList.add("bridgeRefLineNode");
+
+  //결재 참조 셋팅
+  var bridgeRefLineItemHeader = document.createElement("div");
+  bridgeRefLineItemHeader.classList.add("bridgeRefLineItemHeader");
+  bridgeRefLineItemHeader.classList.add("bridgeNomalFont");
+  bridgeRefLineItemHeader.classList.add("bridgeBoldFont");
+  bridgeRefLineItemHeader.innerText = "참조";
+
+  bridgeRefLineNode.appendChild(bridgeRefLineItemHeader);
+
+  //bridgeRefLineItemBody
+  var bridgeRefLineItemBody = document.createElement("div");
+  bridgeRefLineItemBody.classList.add("bridgeRefLineItemBody");
+  //bridgeRefLineItems
+  var bridgeRefLineItems = document.createElement("div");
+  bridgeRefLineItems.classList.add("bridgeRefLineItems");
+
+  el.forEach(function (item, index) {
+    var memberItemSlit = item.split("~|");
+
+    // "0~|1~|윤수용~|과장~|법무팀 ~|sooyong.youn",
+    // "1~|3~|JT시스템~|부서명~|JT시스템 ~|555555",
+    // "2~|4~|정보도움방~|부서명~|정보도움방~|1111111"
+
+    var bridgeRefLineItem = document.createElement("div");
+    bridgeRefLineItem.classList.add("bridgeRefLineItem");
+    bridgeRefLineItem.classList.add("bridgeNomalFont");
+    if (memberItemSlit[1] === "1") {
+      bridgeRefLineItem.innerText =
+        memberItemSlit[2] + "(" + memberItemSlit[4] + ")";
+    } else if (memberItemSlit[1] === "3") {
+      bridgeRefLineItem.innerText = memberItemSlit[2];
+    } else if (memberItemSlit[1] === "4") {
+      bridgeRefLineItem.innerText = memberItemSlit[2] + " 및 하위부서";
+    }
+
+    bridgeRefLineItems.appendChild(bridgeRefLineItem);
+
+    //bridgeRefLineItemComma
+    var bridgeRefLineItemComma = document.createElement("div");
+    bridgeRefLineItemComma.classList.add("bridgeRefLineItemComma");
+    bridgeRefLineItemComma.classList.add("bridgeNomalFont");
+    bridgeRefLineItemComma.innerText = ",";
+    if (index !== 0) {
+      bridgeRefLineItem.parentNode.insertBefore(
+        bridgeRefLineItemComma,
+        bridgeRefLineItem
+      );
+    }
+  });
+  bridgeRefLineItemBody.appendChild(bridgeRefLineItems);
+  bridgeRefLineNode.appendChild(bridgeRefLineItemBody);
+  bridgeViewLine.appendChild(bridgeRefLineNode);
+}
+
+//테이블 형식 수신 셋팅
+function CreatRecLine(el) {
+  //
+  //
+  //bridgeViewLine 최상위 가져옴
+  var bridgeViewLine = document.getElementById("bridgeViewLine");
+  //결재 참조 셋팅
+  var bridgeRecLineNode = document.createElement("div");
+  bridgeRecLineNode.classList.add("bridgeRecLineNode");
+
+  //결재 참조 셋팅
+  var bridgeRecLineItemHeader = document.createElement("div");
+  bridgeRecLineItemHeader.classList.add("bridgeRecLineItemHeader");
+  bridgeRecLineItemHeader.classList.add("bridgeNomalFont");
+  bridgeRecLineItemHeader.classList.add("bridgeBoldFont");
+  bridgeRecLineItemHeader.innerText = "수신";
+
+  bridgeRecLineNode.appendChild(bridgeRecLineItemHeader);
+
+  //bridgeRecLineItemBody
+  var bridgeRecLineItemBody = document.createElement("div");
+  bridgeRecLineItemBody.classList.add("bridgeRecLineItemBody");
+  //bridgeRecLineItems
+  var bridgeRecLineItems = document.createElement("div");
+  bridgeRecLineItems.classList.add("bridgeRecLineItems");
+
+  el.forEach(function (item, index) {
+    var memberItemSlit = item.split("~|");
+
+    // "0~|1~|윤수용~|과장~|법무팀 ~|sooyong.youn",
+    // "1~|3~|JT시스템~|부서명~|JT시스템 ~|555555",
+    // "2~|4~|정보도움방~|부서명~|정보도움방~|1111111"
+
+    var bridgeRecLineItem = document.createElement("div");
+    bridgeRecLineItem.classList.add("bridgeRecLineItem");
+    bridgeRecLineItem.classList.add("bridgeNomalFont");
+    if (memberItemSlit[1] === "2") {
+      bridgeRecLineItem.innerText =
+        memberItemSlit[2] + "(" + memberItemSlit[4] + ")";
+    } else if (memberItemSlit[1] === "5") {
+      bridgeRecLineItem.innerText = memberItemSlit[2];
+    } else if (memberItemSlit[1] === "6") {
+      bridgeRecLineItem.innerText = memberItemSlit[2] + " 및 하위부서";
+    }
+
+    bridgeRecLineItems.appendChild(bridgeRecLineItem);
+
+    //bridgeRecLineItemComma
+    var bridgeRecLineItemComma = document.createElement("div");
+    bridgeRecLineItemComma.classList.add("bridgeRecLineItemComma");
+    bridgeRecLineItemComma.classList.add("bridgeNomalFont");
+    bridgeRecLineItemComma.innerText = ",";
+    if (index !== 0) {
+      bridgeRecLineItem.parentNode.insertBefore(
+        bridgeRecLineItemComma,
+        bridgeRecLineItem
+      );
+    }
+  });
+  bridgeRecLineItemBody.appendChild(bridgeRecLineItems);
+  bridgeRecLineNode.appendChild(bridgeRecLineItemBody);
+  bridgeViewLine.appendChild(bridgeRecLineNode);
+}
+
+//참조 추가
+var buttonAddRefDiv = document.querySelector(".buttonAddRefDiv");
+buttonAddRefDiv.addEventListener("click", function () {
+  //
+});
+//참조 삭제
+var buttonDelRefDiv = document.querySelector(".buttonDelRefDiv");
+buttonDelRefDiv.addEventListener("click", function () {
+  //
+  delRefList();
+});
+
+function delRefList() {
+  var checkedRefmembers = document.querySelectorAll(
+    "div.refLineItem > input[name='checkboxRef']:checked"
+  );
+  checkedRefmembers.forEach(function (item) {
+    //removeChild
+    item.parentNode.parentNode.removeChild(item.parentNode);
+
+    console.log(item);
+  });
+}
+//수신 추가
+var buttonAddRecDiv = document.querySelector(".buttonAddRecDiv");
+buttonAddRecDiv.addEventListener("click", function () {
+  //
+});
+//수신 삭제
+var buttonDelRecDiv = document.querySelector(".buttonDelRecDiv");
+buttonDelRecDiv.addEventListener("click", function () {
+  //
+  delRecList();
+});
+
+function delRecList() {
+  var checkedRecmembers = document.querySelectorAll(
+    "div.recLineItem > input[name='checkboxRec']:checked"
+  );
+  checkedRecmembers.forEach(function (item) {
+    //removeChild
+    item.parentNode.parentNode.removeChild(item.parentNode);
+
+    console.log(item);
+  });
 }
