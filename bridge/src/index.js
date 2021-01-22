@@ -108,6 +108,7 @@ function deleteBridgeNode() {
 var buttonDiv = document.querySelector(".buttonDelDiv");
 buttonDiv.addEventListener("click", function (e) {
   deleteBridgeNode();
+  returnBridgelineData();
 });
 
 //sel 혹은 sel1 클레스가 포함된 상위 객체를 탐색
@@ -149,6 +150,7 @@ var buttonAddDiv = document.querySelector(".buttonAddDiv");
 
 buttonAddDiv.addEventListener("click", function (e) {
   addBridgeNode();
+  returnBridgelineData();
 });
 
 function addBridgeNode() {
