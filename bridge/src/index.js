@@ -2,25 +2,7 @@ if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
-// function Members(
-//   userid,
-//   username,
-//   userempno,
-//   deptid,
-//   deptname,
-//   deptcode,
-//   email,
-//   jobtitle
-// ) {
-//   this.userid = userid;
-//   this.username = username;
-//   this.userempno = userempno;
-//   this.deptid = deptid;
-//   this.deptname = deptname;
-//   this.deptcode = deptcode;
-//   this.email = email;
-//   this.jobtitle = jobtitle;
-// }
+var members = [];
 
 // var bridgecont = document.getElementById("makeBridgeLine");
 
@@ -294,6 +276,7 @@ function makeSubDivItem(paramValue) {
   reMakeItemHead.classList.add("defaultFontSet");
 
   var reMakeSelect = document.createElement("select");
+  reMakeSelect.classList.add("itemSelect");
   reMakeSelect[0] = new Option("일반결재", "1", false, false);
   reMakeSelect[1] = new Option("협조결재", "2", false, false);
   reMakeItemHead.appendChild(reMakeSelect);
@@ -309,9 +292,9 @@ function makeSubDivItem(paramValue) {
   //받아온 paramValue 내용 뿌림
   //창원1사업장체계기술1팀|윤수용|과장
   //console.log(paramValue.split("|")[0]);
-  reMakeItemBodyDept.innerText = paramValue.split("|")[0];
+  reMakeItemBodyDept.innerText = paramValue.split("~|")[2];
   reMakeItemBodyMember.innerText =
-    paramValue.split("|")[1] + "(" + paramValue.split("|")[2] + ")";
+    paramValue.split("~|")[0] + "(" + paramValue.split("~|")[1] + ")";
 
   reMakeItemBody.appendChild(reMakeItemBodyDept);
   reMakeItemBody.appendChild(reMakeItemBodyMember);
@@ -331,14 +314,118 @@ function makeSubDivItem(paramValue) {
   return reMakeSubDiv;
 }
 
-//!!!!!생성된 노드들의 데이터를 뽑는다.
-function returnBridgelineData() {
-  var returnData = "";
+//데이터 뽑기 버튼
+var buttonMakedataDiv = document.querySelector(".buttonMakedataDiv");
+buttonMakedataDiv.addEventListener("click", function () {
+  returnBridgelineData();
+});
 
+//생성된 노드들의 데이터를 뽑는다.
+function returnBridgelineData() {
+  brorItem(document.querySelector("#makeBridgeLine .showDivItem"));
+  bror(document.querySelector("#makeBridgeLine .show"));
+
+  var returnData = "";
+  var makeBridgeLine = document.querySelectorAll("#makeBridgeLine .subList");
+
+  //members 초기화
+  members = [];
+
+  makeBridgeLine.forEach(function (item, index) {
+    //
+    var memberMake = [];
+
+    var itemSubDivItem = item.querySelectorAll(".subDivItem");
+    itemSubDivItem.forEach(function (subItem) {
+      var itemHeadSelectType = subItem.querySelector(".itemSelect");
+      var hiddenMembers = subItem.querySelector(".hiddenMembers");
+      memberMake.push(
+        index + "~|" + itemHeadSelectType.value + "~|" + hiddenMembers.value
+      );
+    });
+    members.push(memberMake);
+  });
+  console.log(members);
+  CreatAppLine(members);
   return returnData;
 }
 
-//!!!!!처음 기안자의 셋팅
-function CreatFirst(el) {
-  //
+//테이블 형식 결재라인 셋팅
+function CreatAppLine(el) {
+  brorItem(document.querySelector("#makeBridgeLine .showDivItem"));
+  bror(document.querySelector("#makeBridgeLine .show"));
+
+  //bridgeViewLine 최상위 가져옴
+  var bridgeViewLine = document.getElementById("bridgeViewLine");
+  bridgeViewLine.innerHTML = "";
+  //결재 라인 셋팅
+  var bridgeAppLine = document.createElement("div");
+  bridgeAppLine.classList.add("bridgeAppLine");
+
+  el.forEach(function (item) {
+    //bridgeAppLineNode
+    var bridgeAppLineNode = document.createElement("div");
+    bridgeAppLineNode.classList.add("bridgeAppLineNode");
+
+    item.forEach(function (itemSub) {
+      //
+      var memberItemSlit = itemSub.split("~|");
+
+      var bridgeAppLineItem = document.createElement("div");
+      bridgeAppLineItem.classList.add("bridgeAppLineItem");
+
+      var bridgeAppLineItemType = document.createElement("div");
+      bridgeAppLineItemType.classList.add("bridgeAppLineItemType");
+      bridgeAppLineItemType.classList.add("bridgeNomalFont");
+      bridgeAppLineItemType.classList.add("bridgeBoldFont");
+      bridgeAppLineItemType.innerText = returnBridgeType(memberItemSlit[1]);
+
+      var bridgeAppLineItemName = document.createElement("div");
+      bridgeAppLineItemName.classList.add("bridgeAppLineItemName");
+      bridgeAppLineItemName.classList.add("bridgeNomalFont");
+      bridgeAppLineItemName.innerText = memberItemSlit[2];
+
+      var bridgeAppLineItemPosition = document.createElement("div");
+      bridgeAppLineItemPosition.classList.add("bridgeAppLineItemPosition");
+      bridgeAppLineItemPosition.classList.add("bridgeNomalFont");
+      bridgeAppLineItemPosition.innerText = memberItemSlit[3];
+
+      var bridgeAppLineItemDept = document.createElement("div");
+      bridgeAppLineItemDept.classList.add("bridgeAppLineItemDept");
+      bridgeAppLineItemDept.classList.add("bridgeNomalFont");
+      bridgeAppLineItemDept.innerText = memberItemSlit[4];
+
+      bridgeAppLineItem.appendChild(bridgeAppLineItemType);
+      bridgeAppLineItem.appendChild(bridgeAppLineItemName);
+      bridgeAppLineItem.appendChild(bridgeAppLineItemPosition);
+      bridgeAppLineItem.appendChild(bridgeAppLineItemDept);
+
+      bridgeAppLineNode.appendChild(bridgeAppLineItem);
+      console.log(itemSub);
+    });
+    bridgeAppLine.appendChild(bridgeAppLineNode);
+  });
+  bridgeViewLine.appendChild(bridgeAppLine);
+}
+
+//결재 타입 지정
+function returnBridgeType(typeCode) {
+  console.log(typeCode);
+  var returnStr = "";
+  switch (typeCode) {
+    case "0":
+      returnStr = "기안";
+      break;
+    case "1":
+      returnStr = "일반결재";
+      break;
+    case "2":
+      returnStr = "협조결재";
+      break;
+    default:
+      // 모든 CASE에 부합하지 않을때 실행할 명령문
+      returnStr = "Err";
+      break;
+  }
+  return returnStr;
 }
