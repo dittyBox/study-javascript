@@ -807,3 +807,10 @@ function delRecList() {
     console.log(item);
   });
 }
+
+//부서인지 확인 하는 함수
+function checkDeptType(el) {
+  var elSplit = el.split("~|");
+  if (!elSplit) return false;
+  return elSplit[1] === "부서명" ? true : false;
+}
