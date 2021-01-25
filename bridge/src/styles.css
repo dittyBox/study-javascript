@@ -3,12 +3,14 @@ body {
 }
 
 .refContCl {
-  width: 530px;
-  height: 80px;
+  width: 420px;
+  height: 180px;
   padding-top: 5px;
-  background-color: #f3c8c8;
+  margin-left: 15px;
+  background-color: #ffffff;
   line-height: 1em;
   overflow: auto;
+  border: 1px solid #e0e0e0;
 }
 
 .refLineItem {
@@ -22,12 +24,14 @@ body {
 }
 
 .recContCl {
-  width: 530px;
-  height: 80px;
+  width: 420px;
+  height: 180px;
   padding-top: 5px;
-  background-color: #e0eccc;
+  margin-left: 15px;
+  background-color: #ffffff;
   line-height: 1em;
   overflow: auto;
+  border: 1px solid #e0e0e0;
 }
 
 .recLineItem {
@@ -37,16 +41,17 @@ body {
 }
 
 .bridgeContCl {
-  width: 530px;
-  height: 400px;
+  width: 450px;
+  height: 470px;
   padding-top: 20px;
   background-color: #f8f8f8;
   line-height: 1em;
   overflow: auto;
+  border: 1px solid #e0e0e0;
 }
 
 .subList {
-  min-width: 500px; /*default 480px 아이템이 4개 이상 부터 (아이템 갯수 * 100)+100px*/
+  min-width: 430px; /*default 480px 아이템이 4개 이상 부터 (아이템 갯수 * 100)+100px*/
   width: auto;
   height: auto;
   margin: 0;
@@ -61,7 +66,7 @@ body {
 
 .subDiv {
   width: auto;
-  min-width: 500px;
+  min-width: 430px;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -154,7 +159,7 @@ body {
 .buttonDelDiv {
   margin: 10px;
   float: left;
-  width: 90px;
+  width: 70px;
   background-color: #e7692e;
   cursor: pointer;
 }
@@ -162,7 +167,7 @@ body {
 .buttonAddDiv {
   margin: 10px;
   float: left;
-  width: 90px;
+  width: 70px;
   background-color: #e7692e;
   cursor: pointer;
 }
@@ -346,7 +351,7 @@ body {
 .buttonDelRefDiv {
   margin: 10px;
   float: left;
-  width: 90px;
+  width: 70px;
   background-color: #e7692e;
   cursor: pointer;
 }
@@ -354,7 +359,7 @@ body {
 .buttonAddRefDiv {
   margin: 10px;
   float: left;
-  width: 90px;
+  width: 70px;
   background-color: #e7692e;
   cursor: pointer;
 }
@@ -362,7 +367,7 @@ body {
 .buttonDelRecDiv {
   margin: 10px;
   float: left;
-  width: 90px;
+  width: 70px;
   background-color: #e7692e;
   cursor: pointer;
 }
@@ -370,7 +375,92 @@ body {
 .buttonAddRecDiv {
   margin: 10px;
   float: left;
-  width: 90px;
+  width: 70px;
   background-color: #e7692e;
   cursor: pointer;
+}
+
+.bridgeWrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+  border: 1px solid red;
+  height: 540px;
+  width: 950px;
+}
+
+.bridgeMemberDiv {
+  border: 1px solid blue;
+  width: 400px;
+}
+
+.bridgeMemberButtonDiv {
+  border: 1px solid wheat;
+  width: 80px;
+}
+
+.bridgeMemberViewDiv {
+  border: 0px solid greenyellow;
+  width: 450px;
+}
+
+.displayNone {
+  display: none;
+}
+
+.bridgeMemberViewUl {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #ffffff;
+}
+
+.bridgeMemberViewLi {
+  display: inline-block;
+  width: 50%;
+  height: 44px;
+  line-height: 2.5em;
+  text-align: center;
+  list-style: none;
+  box-sizing: border-box;
+  margin-right: -4px;
+  margin-bottom: -2px;
+  border-left: 1px solid #e0e0e0;
+  cursor: pointer;
+}
+
+.bridgeMemberViewActive,
+.bridgeMemberViewLi:hover {
+  color: #fb6c07;
+  border-bottom: 3px solid #fe630f;
+  margin-bottom: 1px;
+}
+
+.bridgeContRefcCl {
+  width: 480px;
+  height: 470px;
+  padding-top: 20px;
+  background-color: #f8f8f8;
+  line-height: 1em;
+  overflow: auto;
+  border: 1px solid #e0e0e0;
+}
+
+.appText {
+  font-size: 14px;
+  margin-left: 15px;
+  padding-bottom: 10px;
+}
+
+.refText {
+  font-size: 14px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-left: 15px;
 }
