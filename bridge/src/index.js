@@ -38,6 +38,8 @@ addDataToBridgeNodes(members);
 CreatAppLine(members);
 CreatRefLine(membersRef);
 CreatRecLine(membersRec);
+setRefLists(membersRef);
+setRecLists(membersRec);
 // var bridgecont = document.getElementById("makeBridgeLine");
 
 var bardown = document.querySelectorAll("#makeBridgeLine .bardown");
@@ -361,7 +363,12 @@ function makeSubDivItem(paramValue, type) {
 //데이터 뽑기 버튼
 var buttonMakedataDiv = document.querySelector(".buttonMakedataDiv");
 buttonMakedataDiv.addEventListener("click", function () {
+  //결재 노드 뽑기
   returnBridgelineData();
+  //참조 노드 뽑기
+  getRefList();
+  //수신 노드 뽑기
+  getRecList();
 });
 
 //데이터 뽑기 버튼
@@ -691,9 +698,9 @@ function CreatRecLine(el) {
   el.forEach(function (item, index) {
     var memberItemSlit = item.split("~|");
 
-    // "0~|1~|윤수용~|과장~|법무팀 ~|sooyong.youn",
-    // "1~|3~|JT시스템~|부서명~|JT시스템 ~|555555",
-    // "2~|4~|정보도움방~|부서명~|정보도움방~|1111111"
+    // "0~|2~|윤수용~|과장~|법무팀~|sooyong.youn",
+    // "1~|5~|JT시스템~|부서명~|JT시스템~|555555",
+    // "2~|6~|정보도움방~|부서명~|정보도움방~|1111111"
 
     var bridgeRecLineItem = document.createElement("div");
     bridgeRecLineItem.classList.add("bridgeRecLineItem");
@@ -744,15 +751,57 @@ function addRefLists() {
   addRefList(paramValue);
 }
 
-function addRefList(el) {
+function addRefList(el, arrType) {
   //
   var refMemberplit = el.split("~|");
+  //부서일경우 true를 반환
+  var typeEl = checkDeptType(el);
 
   var makeRefLine = document.getElementById("makeRefLine");
 
   var refLineItem = document.createElement("div");
   refLineItem.classList.add("refLineItem");
   refLineItem.classList.add("bridgeNomalFont");
+  if (typeEl) {
+    //부서인 경우
+    var checkboxDeptEl = document.createElement("input");
+    checkboxDeptEl.setAttribute("type", "checkbox");
+    checkboxDeptEl.setAttribute("name", "checkboxRef");
+    checkboxDeptEl.classList.add("checkboxRef");
+    checkboxDeptEl.setAttribute("value", el);
+
+    refLineItem.appendChild(checkboxDeptEl);
+
+    var spanDeptEl = document.createElement("span");
+    spanDeptEl.innerText = refMemberplit[0];
+    refLineItem.appendChild(spanDeptEl);
+
+    var checkboxDeptPlusEl = document.createElement("input");
+    checkboxDeptPlusEl.setAttribute("type", "checkbox");
+    checkboxDeptPlusEl.setAttribute("name", "subDeptPlus");
+    if (arrType === "3") {
+      checkboxDeptPlusEl.setAttribute("checked", "checked");
+    }
+    refLineItem.appendChild(checkboxDeptPlusEl);
+
+    var spanDeptplusEl = document.createElement("span");
+    spanDeptplusEl.innerText = "하위부서 포함";
+    spanDeptplusEl.classList.add("fontshout");
+    refLineItem.appendChild(spanDeptplusEl);
+  } else {
+    //사람인 경우
+    var checkboxEl = document.createElement("input");
+    checkboxEl.setAttribute("type", "checkbox");
+    checkboxEl.setAttribute("name", "checkboxRef");
+    checkboxEl.classList.add("checkboxRef");
+    checkboxEl.setAttribute("value", el);
+
+    refLineItem.appendChild(checkboxEl);
+
+    var spanEl = document.createElement("span");
+    spanEl.innerText = refMemberplit[0] + " " + refMemberplit[1];
+    refLineItem.appendChild(spanEl);
+  }
 
   makeRefLine.appendChild(refLineItem);
 }
@@ -771,24 +820,120 @@ function delRefList() {
     //removeChild
     item.parentNode.parentNode.removeChild(item.parentNode);
 
-    console.log(item);
+    //console.log(item);
   });
 }
 
+//기존 데이터 참조 추가 setRefLists(membersRef);
+function setRefLists(els) {
+  //
+  els.forEach(function (item) {
+    var getRefDataList = item.split("~|");
+    //IE11을 안쓰게 되면 간단하게 ...으로 구조분해를 하면 되는데....
+    var arrSequence = getRefDataList.shift();
+    var arrType = getRefDataList.shift();
+
+    addRefList(getRefDataList.join("~|"), arrType);
+  });
+}
 //참조 가져오기
 function getRefList() {
   //makeRefLine
   var makeRefLine = document.getElementById("makeRefLine");
   var refLineItems = makeRefLine.querySelectorAll(".refLineItem");
+  //기존 데이터 배열 초기화
+  membersRef = [];
   refLineItems.forEach(function (item) {
-    //
+    //생성되는 데이터 배열 생성
+    var membersRefMake = [];
   });
 }
 //수신 추가
 var buttonAddRecDiv = document.querySelector(".buttonAddRecDiv");
 buttonAddRecDiv.addEventListener("click", function () {
   //
+  addRecLists();
 });
+
+function addRecLists() {
+  //div.memberCheckBox > input[type='checkbox']:checked
+  //memberCheckBox클레스를 가진 DIV안에 check되어진 checkbox input 을 가져옴
+  var memberCheckBox = document.querySelector(
+    "div.memberCheckBox > input[type='radio']:checked"
+  );
+  if (!memberCheckBox) return;
+  var paramValue = memberCheckBox.value;
+  addRecList(paramValue);
+}
+
+function addRecList(el, arrType) {
+  //
+  var recMemberplit = el.split("~|");
+  //부서일경우 true를 반환
+  var typeEl = checkDeptType(el);
+
+  var makeRecLine = document.getElementById("makeRecLine");
+
+  var recLineItem = document.createElement("div");
+  recLineItem.classList.add("recLineItem");
+  recLineItem.classList.add("bridgeNomalFont");
+  if (typeEl) {
+    //부서인 경우
+    var checkboxDeptEl = document.createElement("input");
+    checkboxDeptEl.setAttribute("type", "checkbox");
+    checkboxDeptEl.setAttribute("name", "checkboxRec");
+    checkboxDeptEl.classList.add("checkboxRec");
+    checkboxDeptEl.setAttribute("value", el);
+
+    recLineItem.appendChild(checkboxDeptEl);
+
+    var spanDeptEl = document.createElement("span");
+    spanDeptEl.innerText = recMemberplit[0];
+    recLineItem.appendChild(spanDeptEl);
+
+    var checkboxDeptPlusEl = document.createElement("input");
+    checkboxDeptPlusEl.setAttribute("type", "checkbox");
+    checkboxDeptPlusEl.setAttribute("name", "subDeptPlus");
+    if (arrType === "5") {
+      checkboxDeptPlusEl.setAttribute("checked", "checked");
+    }
+
+    recLineItem.appendChild(checkboxDeptPlusEl);
+
+    var spanDeptplusEl = document.createElement("span");
+    spanDeptplusEl.innerText = "하위부서 포함";
+    spanDeptplusEl.classList.add("fontshout");
+    recLineItem.appendChild(spanDeptplusEl);
+  } else {
+    //사람인 경우
+    var checkboxEl = document.createElement("input");
+    checkboxEl.setAttribute("type", "checkbox");
+    checkboxEl.setAttribute("name", "checkboxRec");
+    checkboxEl.classList.add("checkboxRec");
+    checkboxEl.setAttribute("value", el);
+
+    recLineItem.appendChild(checkboxEl);
+
+    var spanEl = document.createElement("span");
+    spanEl.innerText = recMemberplit[0] + " " + recMemberplit[1];
+    recLineItem.appendChild(spanEl);
+  }
+
+  makeRecLine.appendChild(recLineItem);
+}
+
+//기존 데이터 수신 추가 setRefLists(membersRef);
+function setRecLists(els) {
+  //
+  els.forEach(function (item) {
+    var getRecDataList = item.split("~|");
+    //IE11을 안쓰게 되면 간단하게 ...으로 구조분해를 하면 되는데....
+    var arrSequence = getRecDataList.shift();
+    var arrType = getRecDataList.shift();
+
+    addRecList(getRecDataList.join("~|"), arrType);
+  });
+}
 //수신 삭제
 var buttonDelRecDiv = document.querySelector(".buttonDelRecDiv");
 buttonDelRecDiv.addEventListener("click", function () {
@@ -804,7 +949,19 @@ function delRecList() {
     //removeChild
     item.parentNode.parentNode.removeChild(item.parentNode);
 
-    console.log(item);
+    //console.log(item);
+  });
+}
+//수신 가져오기
+function getRecList() {
+  //makeRefLine
+  var makeRecLine = document.getElementById("makeRecLine");
+  var recLineItems = makeRecLine.querySelectorAll(".recLineItem");
+  //기존 데이터 배열 초기화
+  membersRec = [];
+  recLineItems.forEach(function (item) {
+    //생성되는 데이터 배열 생성
+    var membersRecMake = [];
   });
 }
 
