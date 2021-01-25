@@ -42,11 +42,26 @@ setRecLists(membersRec);
 CreatRefLine(membersRef);
 CreatRecLine(membersRec);
 
+//기본 셋팅으로 결재창은 보이고 참조수신창은 안보이게
 var bridgecont = document.getElementById("makeBridgeLine");
 var makeBridgeRefcLine = document.getElementById("makeBridgeRefcLine");
-//기본 셋팅으로 결재창은 보이고 참조수신창은 안보이게
 bridgecont.classList.remove("displayNone");
 makeBridgeRefcLine.classList.add("displayNone");
+
+//기본 셋팅으로 결재 버튼 보이고 참조수신 버튼 안보이게
+var buttonAddDiv = document.querySelector(".buttonAddDiv");
+var buttonDelDiv = document.querySelector(".buttonDelDiv");
+buttonAddDiv.classList.remove("displayNone");
+buttonDelDiv.classList.remove("displayNone");
+
+var buttonAddRefDiv = document.querySelector(".buttonAddRefDiv");
+var buttonDelRefDiv = document.querySelector(".buttonDelRefDiv");
+var buttonAddRecDiv = document.querySelector(".buttonAddRecDiv");
+var buttonDelRecDiv = document.querySelector(".buttonDelRecDiv");
+buttonAddRefDiv.classList.add("displayNone");
+buttonDelRefDiv.classList.add("displayNone");
+buttonAddRecDiv.classList.add("displayNone");
+buttonDelRecDiv.classList.add("displayNone");
 
 //결재 와 참조/수신 버튼 토글
 var appViewLi = document.querySelector(".bridgeMemberViewUl #appViewLi");
@@ -59,6 +74,13 @@ appViewLi.addEventListener("click", function (e) {
 
   makeBridgeRefcLine.classList.add("displayNone");
   bridgecont.classList.remove("displayNone");
+
+  buttonAddDiv.classList.remove("displayNone");
+  buttonDelDiv.classList.remove("displayNone");
+  buttonAddRefDiv.classList.add("displayNone");
+  buttonDelRefDiv.classList.add("displayNone");
+  buttonAddRecDiv.classList.add("displayNone");
+  buttonDelRecDiv.classList.add("displayNone");
   //console.log(e.currentTarget);
 });
 
@@ -70,6 +92,12 @@ refiewLi.addEventListener("click", function (e) {
   bridgecont.classList.add("displayNone");
   makeBridgeRefcLine.classList.remove("displayNone");
 
+  buttonAddDiv.classList.add("displayNone");
+  buttonDelDiv.classList.add("displayNone");
+  buttonAddRefDiv.classList.remove("displayNone");
+  buttonDelRefDiv.classList.remove("displayNone");
+  buttonAddRecDiv.classList.remove("displayNone");
+  buttonDelRecDiv.classList.remove("displayNone");
   //console.log(bridgecont);
 });
 
