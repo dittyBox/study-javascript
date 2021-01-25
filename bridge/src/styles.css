@@ -156,22 +156,6 @@ body {
   color: #e7692e;
 }
 
-.buttonDelDiv {
-  margin: 10px;
-  float: left;
-  width: 70px;
-  background-color: #e7692e;
-  cursor: pointer;
-}
-
-.buttonAddDiv {
-  margin: 10px;
-  float: left;
-  width: 70px;
-  background-color: #e7692e;
-  cursor: pointer;
-}
-
 .buttonMakedataDiv {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -195,9 +179,6 @@ body {
   width: 760px;
   height: 600px;
   padding: 10px;
-}
-
-.bridgeAppLine {
 }
 
 .bridgeAppLineTitle {
@@ -348,36 +329,88 @@ body {
   font-weight: bold;
 }
 
-.buttonDelRefDiv {
-  margin: 10px;
+.buttonAddDiv {
+  position: relative;
+  top: 200px;
   float: left;
-  width: 70px;
-  background-color: #e7692e;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  background-color: #7f756a;
   cursor: pointer;
+  font-size: 12px;
+  color: #ffffff;
+  line-height: 2.5em;
+}
+
+.buttonDelDiv {
+  position: relative;
+  top: 250px;
+  float: left;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  background-color: #7f756a;
+  cursor: pointer;
+  font-size: 12px;
+  color: #ffffff;
+  line-height: 2.5em;
 }
 
 .buttonAddRefDiv {
-  margin: 10px;
+  position: relative;
+  top: 120px;
   float: left;
-  width: 70px;
-  background-color: #e7692e;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  background-color: #7f756a;
   cursor: pointer;
+  font-size: 12px;
+  color: #ffffff;
+  line-height: 2.5em;
 }
 
-.buttonDelRecDiv {
-  margin: 10px;
+.buttonDelRefDiv {
+  position: relative;
+  top: 150px;
   float: left;
-  width: 70px;
-  background-color: #e7692e;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  background-color: #7f756a;
   cursor: pointer;
+  font-size: 12px;
+  color: #ffffff;
+  line-height: 2.5em;
 }
 
 .buttonAddRecDiv {
-  margin: 10px;
+  position: relative;
+  top: 300px;
   float: left;
-  width: 70px;
-  background-color: #e7692e;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  background-color: #7f756a;
   cursor: pointer;
+  font-size: 12px;
+  color: #ffffff;
+  line-height: 2.5em;
+}
+
+.buttonDelRecDiv {
+  position: relative;
+  top: 330px;
+  float: left;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  background-color: #7f756a;
+  cursor: pointer;
+  font-size: 12px;
+  color: #ffffff;
+  line-height: 2.5em;
 }
 
 .bridgeWrap {
@@ -386,18 +419,18 @@ body {
   flex-direction: row;
   justify-content: space-between;
   padding: 5px;
-  border: 1px solid red;
+  border: 1px solid #e0e0e0;
   height: 540px;
   width: 950px;
 }
 
 .bridgeMemberDiv {
-  border: 1px solid blue;
+  border: 1px solid #e0e0e0;
   width: 400px;
 }
 
 .bridgeMemberButtonDiv {
-  border: 1px solid wheat;
+  border: 0px solid wheat;
   width: 80px;
 }
 
