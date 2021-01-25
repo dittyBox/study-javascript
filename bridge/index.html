@@ -24,21 +24,21 @@
           </div>
       </div>
       <div class="bridgeMemberButtonDiv">
-          <div class="buttonAddDiv">추가</div>
-          <div class="buttonDelDiv">삭제</div>
-          <div class="buttonAddRefDiv">참조추가</div>
-          <div class="buttonDelRefDiv">참조삭제</div>
-          <div class="buttonAddRecDiv">수신추가</div>
-          <div class="buttonDelRecDiv">수신삭제</div>
+          <div class="buttonAddDiv displayNone">추가</div>
+          <div class="buttonDelDiv displayNone">삭제</div>
+          <div class="buttonAddRefDiv displayNone">참조추가</div>
+          <div class="buttonDelRefDiv displayNone">참조삭제</div>
+          <div class="buttonAddRecDiv displayNone">수신추가</div>
+          <div class="buttonDelRecDiv displayNone">수신삭제</div>
       </div>
       <div class="bridgeMemberViewDiv">
             <ul class="bridgeMemberViewUl">
                 <li id="appViewLi" class="bridgeMemberViewLi bridgeMemberViewActive">결재</li>
                 <li id="refiewLi" class="bridgeMemberViewLi">참조/수신</li>
             </ul>
-            <div id="makeBridgeLine" class="bridgeContCl">
+            <div id="makeBridgeLine" class="bridgeContCl displayNone">
             </div>
-            <div id="makeBridgeRefcLine" class="bridgeContRefcCl">
+            <div id="makeBridgeRefcLine" class="bridgeContRefcCl displayNone">
                 <div class="appText">참조</div>
                 <div id="makeRefLine" class="refContCl">
                 </div>
@@ -54,7 +54,6 @@
     <div style="background-color: #f8ca74;">여기서 부터는 결재라인을 테이블 형식으로 나타내는 부분</div>
     <div id="bridgeViewLine" class="bridgeViewLine"></div>
     <script src="src/index.js">
-      test();
     </script>
   </body>
 </html>
