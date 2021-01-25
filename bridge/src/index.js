@@ -15,6 +15,7 @@ membersRef = [
 membersRec = [
   "0~|2~|윤수용~|과장~|법무팀~|sooyong.youn",
   "1~|5~|JT시스템~|부서명~|JT시스템~|555555",
+  "1~|5~|정보기획~|부서명~|정보기획~|222222",
   "2~|6~|정보도움방~|부서명~|정보도움방~|1111111"
 ];
 
@@ -26,7 +27,7 @@ members = [
   [
     "2~|1~|윤수용~|과장~|법무팀~|sooyong.youn",
     "2~|2~|윤수용~|과장~|JT시스템~|sooyong.youn",
-    "2~|2~|윤수용~|과장~|창원1사업장체계기술1팀~|sooyong.youn"
+    "2~|1~|윤수용~|과장~|창원1사업장체계기술2팀~|sooyong.youn"
   ],
   [
     "3~|1~|윤수용~|과장~|창원1사업장체계기술1팀~|sooyong.youn",
@@ -36,11 +37,41 @@ members = [
 
 addDataToBridgeNodes(members);
 CreatAppLine(members);
-CreatRefLine(membersRef);
-CreatRecLine(membersRec);
 setRefLists(membersRef);
 setRecLists(membersRec);
-// var bridgecont = document.getElementById("makeBridgeLine");
+CreatRefLine(membersRef);
+CreatRecLine(membersRec);
+
+var bridgecont = document.getElementById("makeBridgeLine");
+var makeBridgeRefcLine = document.getElementById("makeBridgeRefcLine");
+//기본 셋팅으로 결재창은 보이고 참조수신창은 안보이게
+bridgecont.classList.remove("displayNone");
+makeBridgeRefcLine.classList.add("displayNone");
+
+//결재 와 참조/수신 버튼 토글
+var appViewLi = document.querySelector(".bridgeMemberViewUl #appViewLi");
+var refiewLi = document.querySelector(".bridgeMemberViewUl #refiewLi");
+
+appViewLi.addEventListener("click", function (e) {
+  //결재창 보이기
+  appViewLi.classList.add("bridgeMemberViewActive");
+  refiewLi.classList.remove("bridgeMemberViewActive");
+
+  makeBridgeRefcLine.classList.add("displayNone");
+  bridgecont.classList.remove("displayNone");
+  //console.log(e.currentTarget);
+});
+
+refiewLi.addEventListener("click", function (e) {
+  //참조수신창 보이기
+  refiewLi.classList.add("bridgeMemberViewActive");
+  appViewLi.classList.remove("bridgeMemberViewActive");
+
+  bridgecont.classList.add("displayNone");
+  makeBridgeRefcLine.classList.remove("displayNone");
+
+  //console.log(bridgecont);
+});
 
 var bardown = document.querySelectorAll("#makeBridgeLine .bardown");
 var itemRight = document.querySelectorAll("#makeBridgeLine .itemRight");
@@ -240,7 +271,8 @@ function viewWidthEdit() {
   });
   //console.log("maxWidth : ", maxWidth);
   //모든 subList 값을 가장 긴 노드값으로 변경한다.
-  maxWidth = maxWidth < 520 ? 500 : maxWidth;
+  console.log(maxWidth);
+  maxWidth = maxWidth < 420 ? 400 : maxWidth;
   var nodeSubList = document.querySelectorAll("#makeBridgeLine .subList");
   nodeSubList.forEach(function (item) {
     item.style.width = maxWidth + "px";
@@ -369,6 +401,10 @@ buttonMakedataDiv.addEventListener("click", function () {
   getRefList();
   //수신 노드 뽑기
   getRecList();
+  //참조 테이블형식으로
+  CreatRefLine(membersRef);
+  //수신 테이블형식으로
+  CreatRecLine(membersRec);
 });
 
 //데이터 뽑기 버튼
@@ -376,6 +412,10 @@ var buttonMakeDiv = document.querySelector(".buttonMakeDiv");
 buttonMakeDiv.addEventListener("click", function () {
   addDataToBridgeNodes(members);
   CreatAppLine(members);
+  //참조 테이블형식으로
+  CreatRefLine(membersRef);
+  //수신 테이블형식으로
+  CreatRecLine(membersRec);
 });
 
 //기안자 만들기
@@ -418,7 +458,7 @@ function addFirstNode(subList, el) {
   subitemDivDept.innerText = memberItemSlit[2];
   var subitemDivName = document.createElement("div");
   subitemDivName.classList.add("bfont");
-  subitemDivName.innerText = memberItemSlit[0] + "(" + memberItemSlit[2] + ")";
+  subitemDivName.innerText = memberItemSlit[0] + "(" + memberItemSlit[1] + ")";
   var subitemDivData = document.createElement("div");
   var hiddenMembers = document.createElement("input");
   hiddenMembers.classList.add("hiddenMembers");
@@ -533,7 +573,7 @@ function CreatAppLine(el) {
 
   //bridgeViewLine 최상위 가져옴
   var bridgeViewLine = document.getElementById("bridgeViewLine");
-  bridgeViewLine.innerHTML = "";
+  bridgeViewLine.innerText = "";
   //결재 라인 셋팅
   var bridgeAppLine = document.createElement("div");
   bridgeAppLine.classList.add("bridgeAppLine");
@@ -645,9 +685,9 @@ function CreatRefLine(el) {
       bridgeRefLineItem.innerText =
         memberItemSlit[2] + "(" + memberItemSlit[4] + ")";
     } else if (memberItemSlit[1] === "3") {
-      bridgeRefLineItem.innerText = memberItemSlit[2];
-    } else if (memberItemSlit[1] === "4") {
       bridgeRefLineItem.innerText = memberItemSlit[2] + " 및 하위부서";
+    } else if (memberItemSlit[1] === "4") {
+      bridgeRefLineItem.innerText = memberItemSlit[2];
     }
 
     bridgeRefLineItems.appendChild(bridgeRefLineItem);
@@ -709,9 +749,9 @@ function CreatRecLine(el) {
       bridgeRecLineItem.innerText =
         memberItemSlit[2] + "(" + memberItemSlit[4] + ")";
     } else if (memberItemSlit[1] === "5") {
-      bridgeRecLineItem.innerText = memberItemSlit[2];
-    } else if (memberItemSlit[1] === "6") {
       bridgeRecLineItem.innerText = memberItemSlit[2] + " 및 하위부서";
+    } else if (memberItemSlit[1] === "6") {
+      bridgeRecLineItem.innerText = memberItemSlit[2];
     }
 
     bridgeRecLineItems.appendChild(bridgeRecLineItem);
@@ -779,6 +819,7 @@ function addRefList(el, arrType) {
     var checkboxDeptPlusEl = document.createElement("input");
     checkboxDeptPlusEl.setAttribute("type", "checkbox");
     checkboxDeptPlusEl.setAttribute("name", "subDeptPlus");
+    checkboxDeptPlusEl.classList.add("subDeptPlus");
     if (arrType === "3") {
       checkboxDeptPlusEl.setAttribute("checked", "checked");
     }
@@ -843,10 +884,20 @@ function getRefList() {
   var refLineItems = makeRefLine.querySelectorAll(".refLineItem");
   //기존 데이터 배열 초기화
   membersRef = [];
-  refLineItems.forEach(function (item) {
-    //생성되는 데이터 배열 생성
-    var membersRefMake = [];
+  //생성되는 데이터 배열 생성
+  var membersRefMake = [];
+  refLineItems.forEach(function (item, index) {
+    var refNodeData = item.querySelector(".checkboxRef");
+    var refNodePulsData = item.querySelector(".subDeptPlus:checked");
+    var refType = checkDeptType(refNodeData.value)
+      ? refNodePulsData
+        ? "3"
+        : "4"
+      : "1";
+
+    membersRefMake.push(index + "~|" + refType + "~|" + refNodeData.value);
   });
+  membersRef = membersRefMake;
 }
 //수신 추가
 var buttonAddRecDiv = document.querySelector(".buttonAddRecDiv");
@@ -894,6 +945,7 @@ function addRecList(el, arrType) {
     var checkboxDeptPlusEl = document.createElement("input");
     checkboxDeptPlusEl.setAttribute("type", "checkbox");
     checkboxDeptPlusEl.setAttribute("name", "subDeptPlus");
+    checkboxDeptPlusEl.classList.add("subDeptPlus");
     if (arrType === "5") {
       checkboxDeptPlusEl.setAttribute("checked", "checked");
     }
@@ -959,10 +1011,21 @@ function getRecList() {
   var recLineItems = makeRecLine.querySelectorAll(".recLineItem");
   //기존 데이터 배열 초기화
   membersRec = [];
-  recLineItems.forEach(function (item) {
-    //생성되는 데이터 배열 생성
-    var membersRecMake = [];
+
+  var membersRecMake = [];
+  recLineItems.forEach(function (item, index) {
+    var recNodeData = item.querySelector(".checkboxRec");
+    var recNodePulsData = item.querySelector(".subDeptPlus:checked");
+    var recType = checkDeptType(recNodeData.value)
+      ? recNodePulsData
+        ? "5"
+        : "6"
+      : "2";
+
+    membersRecMake.push(index + "~|" + recType + "~|" + recNodeData.value);
   });
+  membersRec = membersRecMake;
+  console.log(membersRec);
 }
 
 //부서인지 확인 하는 함수
