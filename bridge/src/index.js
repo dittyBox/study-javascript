@@ -5,6 +5,7 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 var members = [];
 var membersRef = [];
 var membersRec = [];
+var subDivItemIndex = 0;
 
 membersRef = [
   "0~|1~|윤수용~|과장~|법무팀~|sooyong.youn",
@@ -306,6 +307,129 @@ function viewWidthEdit() {
     item.style.width = maxWidth + "px";
   });
 }
+function makeDragSubList(dragEl) {
+  //subList 생성
+  var reMakeSubList = document.createElement("div");
+  reMakeSubList.classList.add("subList");
+
+  var reMakeBardown = document.createElement("div");
+  reMakeBardown.classList.add("bardown");
+  reMakeBardown.innerText = "▼";
+  reMakeBardown.addEventListener("click", function (e) {
+    // const dropdown = e.currentTarget.parentNode.querySelector(".dropdown");
+    // dropdown.classList.toggle("show");
+    bror(document.querySelector("#makeBridgeLine .show"));
+    brorItem(document.querySelector("#makeBridgeLine .showDivItem"));
+    e.currentTarget.classList.toggle("show");
+
+    // const marker = e.currentTarget.querySelector(".marker");
+    // marker.classList.toggle("hide");
+    // console.log(e.currentTarget);
+  });
+
+  reMakeBardown.addEventListener("dragover", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+  });
+
+  reMakeBardown.addEventListener("dragenter", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    //console.log(evEl.target);
+    evEl.currentTarget.classList.add("dragoverActive");
+  });
+
+  reMakeBardown.addEventListener("dragleave", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    //console.log(evEl.target);
+    evEl.currentTarget.classList.remove("dragoverActive");
+  });
+
+  reMakeBardown.addEventListener("drop", function (evEl) {
+    evEl.preventDefault();
+    evEl.currentTarget.classList.remove("dragoverActive");
+
+    var dragTargetId = evEl.dataTransfer.getData("text");
+    var dragTarget = document.getElementById(dragTargetId);
+
+    if (dragTarget.id === evEl.currentTarget.id) return;
+    var delPnode = findclassName(dragTarget, "subList");
+
+    var beforNode = findclassName(evEl.currentTarget, "subList");
+    if (beforNode) {
+      var addNode = makeDragSubList(dragTarget);
+      beforNode.parentNode.insertBefore(addNode, beforNode.nextSibling);
+    }
+
+    if (delPnode.querySelectorAll(".subDivItem").length === 0) {
+      delPnode.parentNode.removeChild(delPnode);
+    }
+    //해당 결재라인의 갯수만큼 width을 늘이거나 줄여야 한다.
+    viewWidthEdit();
+  });
+
+  var reMakeSubDiv = document.createElement("div");
+  reMakeSubDiv.classList.add("subDiv");
+
+  reMakeSubDiv.appendChild(dragEl);
+
+  var reMakeItemRight = document.createElement("div");
+  reMakeItemRight.classList.add("itemRight");
+  reMakeItemRight.innerText = "▶";
+  reMakeItemRight.addEventListener("click", function (e) {
+    // const dropdown = e.currentTarget.parentNode.querySelector(".dropdown");
+    // dropdown.classList.toggle("show");
+    bror(document.querySelector("#makeBridgeLine .show"));
+    brorItem(document.querySelector("#makeBridgeLine .showDivItem"));
+    e.currentTarget.classList.toggle("show");
+    // const marker = e.currentTarget.querySelector(".marker");
+    // marker.classList.toggle("hide");
+    // console.log(e.currentTarget);
+  });
+  // 드래그 객체가 여기 위로 올때
+  reMakeItemRight.addEventListener("dragover", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+  });
+  // 드래그 객체가 여기 위로 올때
+  reMakeItemRight.addEventListener("dragenter", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    evEl.currentTarget.classList.add("dragoverActive");
+  });
+  // 드래그 객체가 여기 위를 벗어 날때
+  reMakeItemRight.addEventListener("dragleave", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    //console.log(evEl.target);
+    evEl.currentTarget.classList.remove("dragoverActive");
+  });
+  // Drop
+  reMakeItemRight.addEventListener("drop", function (evEl) {
+    evEl.preventDefault();
+    evEl.currentTarget.classList.remove("dragoverActive");
+
+    var dragTargetId = evEl.dataTransfer.getData("text");
+    var dragTarget = document.getElementById(dragTargetId);
+
+    if (dragTarget.id === evEl.currentTarget.id) return;
+    var delPnode = findclassName(dragTarget, "subList");
+
+    evEl.currentTarget.parentNode.insertBefore(dragTarget, evEl.currentTarget);
+
+    if (delPnode.querySelectorAll(".subDivItem").length === 0) {
+      delPnode.parentNode.removeChild(delPnode);
+    }
+  });
+
+  reMakeSubDiv.appendChild(reMakeItemRight);
+
+  reMakeSubList.appendChild(reMakeSubDiv);
+  reMakeSubList.appendChild(reMakeBardown);
+
+  return reMakeSubList;
+}
 
 function makeSubList(paramValue, types) {
   //subList 생성
@@ -327,6 +451,48 @@ function makeSubList(paramValue, types) {
     // console.log(e.currentTarget);
   });
 
+  reMakeBardown.addEventListener("dragover", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+  });
+
+  reMakeBardown.addEventListener("dragenter", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    //console.log(evEl.target);
+    evEl.currentTarget.classList.add("dragoverActive");
+  });
+
+  reMakeBardown.addEventListener("dragleave", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    //console.log(evEl.target);
+    evEl.currentTarget.classList.remove("dragoverActive");
+  });
+
+  reMakeBardown.addEventListener("drop", function (evEl) {
+    evEl.preventDefault();
+    evEl.currentTarget.classList.remove("dragoverActive");
+
+    var dragTargetId = evEl.dataTransfer.getData("text");
+    var dragTarget = document.getElementById(dragTargetId);
+
+    if (dragTarget.id === evEl.currentTarget.id) return;
+    var delPnode = findclassName(dragTarget, "subList");
+
+    var beforNode = findclassName(evEl.currentTarget, "subList");
+    if (beforNode) {
+      var addNode = makeDragSubList(dragTarget);
+      beforNode.parentNode.insertBefore(addNode, beforNode.nextSibling);
+    }
+
+    if (delPnode.querySelectorAll(".subDivItem").length === 0) {
+      delPnode.parentNode.removeChild(delPnode);
+    }
+    //해당 결재라인의 갯수만큼 width을 늘이거나 줄여야 한다.
+    viewWidthEdit();
+  });
+
   var reMakeSubDiv = document.createElement("div");
   reMakeSubDiv.classList.add("subDiv");
 
@@ -346,6 +512,41 @@ function makeSubList(paramValue, types) {
     // marker.classList.toggle("hide");
     // console.log(e.currentTarget);
   });
+  // 드래그 객체가 여기 위로 올때
+  reMakeItemRight.addEventListener("dragover", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+  });
+  // 드래그 객체가 여기 위로 올때
+  reMakeItemRight.addEventListener("dragenter", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    evEl.currentTarget.classList.add("dragoverActive");
+  });
+  // 드래그 객체가 여기 위를 벗어 날때
+  reMakeItemRight.addEventListener("dragleave", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    //console.log(evEl.target);
+    evEl.currentTarget.classList.remove("dragoverActive");
+  });
+  // Drop
+  reMakeItemRight.addEventListener("drop", function (evEl) {
+    evEl.preventDefault();
+    evEl.currentTarget.classList.remove("dragoverActive");
+
+    var dragTargetId = evEl.dataTransfer.getData("text");
+    var dragTarget = document.getElementById(dragTargetId);
+
+    if (dragTarget.id === evEl.currentTarget.id) return;
+    var delPnode = findclassName(dragTarget, "subList");
+
+    evEl.currentTarget.parentNode.insertBefore(dragTarget, evEl.currentTarget);
+
+    if (delPnode.querySelectorAll(".subDivItem").length === 0) {
+      delPnode.parentNode.removeChild(delPnode);
+    }
+  });
 
   reMakeSubDiv.appendChild(reMakeItemRight);
 
@@ -359,12 +560,58 @@ function makeSubDivItem(paramValue, type) {
   //
   var reMakeSubDiv = document.createElement("div");
   reMakeSubDiv.classList.add("subDivItem");
+  reMakeSubDiv.setAttribute("draggable", "true");
+  reMakeSubDiv.setAttribute("id", "suDivItem" + subDivItemIndex);
+  console.log(subDivItemIndex);
+  subDivItemIndex++;
   reMakeSubDiv.addEventListener("click", function (e) {
     //console.log(e.currentTarget);
     brorItem(document.querySelector("#makeBridgeLine .showDivItem"));
     bror(document.querySelector("#makeBridgeLine .show"));
     e.currentTarget.classList.remove("subDivItem");
     reMakeSubDiv.classList.add("showDivItem");
+  });
+  //항목의 드래그 시작
+  reMakeSubDiv.addEventListener("dragstart", function (evEl) {
+    //console.log(evEl.target);
+    //console.log(evEl.currentTarget);
+    evEl.dataTransfer.setData("text", evEl.target.id);
+    evEl.dataTransfer.dropEffect = "move";
+  });
+  // 드래그 객체가 여기 위로 올때
+  reMakeSubDiv.addEventListener("dragover", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+  });
+  // 드래그 객체가 여기 위로 올때
+  reMakeSubDiv.addEventListener("dragenter", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    evEl.currentTarget.classList.add("dragoverActive");
+  });
+  // 드래그 객체가 여기 위를 벗어 날때
+  reMakeSubDiv.addEventListener("dragleave", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    //console.log(evEl.target);
+    evEl.currentTarget.classList.remove("dragoverActive");
+  });
+  // Drop
+  reMakeSubDiv.addEventListener("drop", function (evEl) {
+    evEl.preventDefault();
+    evEl.currentTarget.classList.remove("dragoverActive");
+
+    var dragTargetId = evEl.dataTransfer.getData("text");
+    var dragTarget = document.getElementById(dragTargetId);
+
+    if (dragTarget.id === evEl.currentTarget.id) return;
+    var delPnode = findclassName(dragTarget, "subList");
+
+    evEl.currentTarget.parentNode.insertBefore(dragTarget, evEl.currentTarget);
+
+    if (delPnode.querySelectorAll(".subDivItem").length === 0) {
+      delPnode.parentNode.removeChild(delPnode);
+    }
   });
 
   var reMakeItemHead = document.createElement("div");
@@ -515,8 +762,50 @@ function addFirstNode(subList, el) {
     e.currentTarget.classList.toggle("show");
 
     // const marker = e.currentTarget.querySelector(".marker");
-    // marker.classList.toggle("hide");
-    // console.log(e.currentTarget);
+    // marker.classList.toggle("hides");
+    // console.log(e.currentTarget);d
+  });
+
+  bardown.addEventListener("dragover", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+  });
+
+  bardown.addEventListener("dragenter", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    //console.log(evEl.target);
+    evEl.currentTarget.classList.add("dragoverActive");
+  });
+
+  bardown.addEventListener("dragleave", function (evEl) {
+    //console.log(evEl.currentTarget);
+    evEl.preventDefault();
+    //console.log(evEl.target);
+    evEl.currentTarget.classList.remove("dragoverActive");
+  });
+
+  bardown.addEventListener("drop", function (evEl) {
+    evEl.preventDefault();
+    evEl.currentTarget.classList.remove("dragoverActive");
+
+    var dragTargetId = evEl.dataTransfer.getData("text");
+    var dragTarget = document.getElementById(dragTargetId);
+
+    if (dragTarget.id === evEl.currentTarget.id) return;
+    var delPnode = findclassName(dragTarget, "subList");
+
+    var beforNode = findclassName(evEl.currentTarget, "subList");
+    if (beforNode) {
+      var addNode = makeDragSubList(dragTarget);
+      beforNode.parentNode.insertBefore(addNode, beforNode.nextSibling);
+    }
+
+    if (delPnode.querySelectorAll(".subDivItem").length === 0) {
+      delPnode.parentNode.removeChild(delPnode);
+    }
+    //해당 결재라인의 갯수만큼 width을 늘이거나 줄여야 한다.
+    viewWidthEdit();
   });
 
   subList.appendChild(subDiv);
@@ -551,7 +840,7 @@ function addDataToBridgeNodes(el) {
       if (memberItemSlit[1] === "0") {
         makeBridgeLine.appendChild(addFirstNode(subList, paramValue));
       } else if (indexSub === 0) {
-        subList = makeSubList(paramValue, memberItemSlit[2]);
+        subList = makeSubList(paramValue, memberItemSlit[1]);
       } else {
         var arr = subList.querySelector(".itemRight");
         var addNodeItem = makeSubDivItem(paramValue, memberItemSlit[1]);
@@ -1061,34 +1350,4 @@ function checkDeptType(el) {
   var elSplit = el.split("~|");
   if (!elSplit) return false;
   return elSplit[1] === "부서명" ? true : false;
-}
-
-if (typeof Object.assign != 'function') {
-  // Must be writable: true, enumerable: false, configurable: true
-  Object.defineProperty(Object, "assign", {
-    value: function assign(target, varArgs) { // .length of function is 2
-      'use strict';
-      if (target == null) { // TypeError if undefined or null
-        throw new TypeError('Cannot convert undefined or null to object');
-      }
-
-      var to = Object(target);
-
-      for (var index = 1; index < arguments.length; index++) {
-        var nextSource = arguments[index];
-
-        if (nextSource != null) { // Skip over if undefined or null
-          for (var nextKey in nextSource) {
-            // Avoid bugs when hasOwnProperty is shadowed
-            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-              to[nextKey] = nextSource[nextKey];
-            }
-          }
-        }
-      }
-      return to;
-    },
-    writable: true,
-    configurable: true
-  });
 }
