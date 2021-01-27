@@ -77,7 +77,8 @@ body {
 .subDiv .itemRight {
   min-width: 15px;
   margin-left: 5px;
-  padding-top: 90px;
+  text-align: center;
+  line-height: 100px;
   height: 100px;
   flex: none;
 }
@@ -496,4 +497,9 @@ body {
   padding-top: 20px;
   padding-bottom: 10px;
   margin-left: 15px;
+}
+
+/*드래그 드랍*/
+.dragoverActive {
+  background-color: #c97a21;
 }
