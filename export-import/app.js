@@ -1,4 +1,4 @@
-import {okPrint} from "./lib/studyFunction"
+import {okPrint} from "./lib/studyFunction.js"
 
 
 let root = document.getElementById('root');
