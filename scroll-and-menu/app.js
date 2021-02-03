@@ -55,6 +55,15 @@ window.addEventListener('load',()=>{
         item.setAttribute('id',item.innerText);
         //index가 0이면 첫번째 항목이니 메뉴에 하이라이트 효과를 주자 
         if(index===0) addMenuSub.classList.add('highlights') ;
+        //역으로 메뉴를 누르면 스크롤이 이동되도록
+        addMenuSub.addEventListener('click',(e)=>{
+            //매칭되는 본문 h값 가져 온다.
+            let id = viewDiv.querySelector('#' + e.currentTarget.id);
+            //해당 객체의 위치를 가져온다.
+            let scrollPosition = id.offsetTop-30;
+            //이동시킨다.
+            window.scrollTo({top:scrollPosition, left:0, behavior:'smooth'});
+        })
         //메뉴를 만들자
         menuDiv.appendChild(addMenuSub);
     })
