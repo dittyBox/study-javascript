@@ -8,31 +8,31 @@ var membersRec = [];
 var subDivItemIndex = 0;
 
 membersRef = [
-  "0~|1~|윤수용~|과장~|법무팀~|sooyong.youn",
-  "1~|3~|JT시스템~|부서명~|JT시스템~|555555",
-  "2~|4~|정보도움방~|부서명~|정보도움방~|1111111"
+  "0~|1~|윤수용~|과장~|부서팀~|sooyong.youn",
+  "1~|3~|JT시스템~|부서명~|부서시스템~|555555",
+  "2~|4~|정보도움방~|부서명~|부서도움방~|1111111"
 ];
 
 membersRec = [
-  "0~|2~|윤수용~|과장~|법무팀~|sooyong.youn",
-  "1~|5~|JT시스템~|부서명~|JT시스템~|555555",
-  "1~|5~|정보기획~|부서명~|정보기획~|222222",
-  "2~|6~|정보도움방~|부서명~|정보도움방~|1111111"
+  "0~|2~|윤수용~|과장~|부서팀~|sooyong.youn",
+  "1~|5~|JT시스템~|부서명~|부서시스템~|555555",
+  "1~|5~|정보기획~|부서명~|부서기획~|222222",
+  "2~|6~|정보도움방~|부서명~|부서도움방~|1111111"
 ];
 
-members = [["0~|0~|윤수용~|과장~|JT시스템~|sooyong.youn"]];
+members = [["0~|0~|윤수용~|과장~|부서시스템~|sooyong.youn"]];
 
 members = [
-  ["0~|0~|윤수용~|과장~|JT시스템~|sooyong.youn"],
-  ["1~|1~|윤수용~|과장~|창원1사업장체계기술2팀~|sooyong.youn"],
+  ["0~|0~|윤수용~|과장~|부서시스템~|sooyong.youn"],
+  ["1~|1~|윤수용~|과장~|부서2팀~|sooyong.youn"],
   [
-    "2~|1~|윤수용~|과장~|법무팀~|sooyong.youn",
-    "2~|2~|윤수용~|과장~|JT시스템~|sooyong.youn",
-    "2~|1~|윤수용~|과장~|창원1사업장체계기술2팀~|sooyong.youn"
+    "2~|1~|윤수용~|과장~|부서팀~|sooyong.youn",
+    "2~|2~|윤수용~|과장~|부서시스템~|sooyong.youn",
+    "2~|1~|윤수용~|과장~|부서2팀~|sooyong.youn"
   ],
   [
-    "3~|1~|윤수용~|과장~|창원1사업장체계기술1팀~|sooyong.youn",
-    "3~|1~|윤수용~|과장~|창원1사업장체계기술2팀~|sooyong.youn"
+    "3~|1~|윤수용~|과장~|부서1팀~|sooyong.youn",
+    "3~|1~|윤수용~|과장~|부서2팀~|sooyong.youn"
   ]
 ];
 
@@ -991,9 +991,6 @@ function CreatRefLine(el) {
   el.forEach(function (item, index) {
     var memberItemSlit = item.split("~|");
 
-    // "0~|1~|윤수용~|과장~|법무팀 ~|sooyong.youn",
-    // "1~|3~|JT시스템~|부서명~|JT시스템 ~|555555",
-    // "2~|4~|정보도움방~|부서명~|정보도움방~|1111111"
 
     var bridgeRefLineItem = document.createElement("div");
     bridgeRefLineItem.classList.add("bridgeRefLineItem");
@@ -1055,9 +1052,6 @@ function CreatRecLine(el) {
   el.forEach(function (item, index) {
     var memberItemSlit = item.split("~|");
 
-    // "0~|2~|윤수용~|과장~|법무팀~|sooyong.youn",
-    // "1~|5~|JT시스템~|부서명~|JT시스템~|555555",
-    // "2~|6~|정보도움방~|부서명~|정보도움방~|1111111"
 
     var bridgeRecLineItem = document.createElement("div");
     bridgeRecLineItem.classList.add("bridgeRecLineItem");
